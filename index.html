@@ -409,17 +409,17 @@
 <section class="section">
     <div class="container is-max-desktop">
         <h2 class="title is-3 has-text-centered">Watch CrossSDF Learn: Training Evolution</h2>
-        <div class="video-slider">
+        <div class="video-slider" id="training-evolution-slider">
             <div class="video-container-wrapper">
                 <div class="video-container">
                     <div class="video-title-overlay">Armadillo</div>
-                    <video autoplay loop muted playsinline>
+                    <video autoplay loop muted playsinline class="training-video" style="object-fit: contain;">
                         <source src="./videos/armadillo.mp4" type="video/mp4">
                     </video>
                 </div>
                 <div class="video-container">
                     <div class="video-title-overlay">Pulmonaries</div>
-                    <video autoplay loop muted playsinline>
+                    <video autoplay loop muted playsinline class="training-video" style="object-fit: contain;">
                         <source src="./videos/pulmonary.mp4" type="video/mp4">
                     </video>
                 </div>
@@ -435,6 +435,18 @@
         </div>
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Only target the training videos
+    const trainingVideos = document.querySelectorAll('#training-evolution-slider .training-video');
+    
+    // Set playback rate only for training videos
+    trainingVideos.forEach(video => {
+        video.playbackRate = 0.5;
+    });
+});
+</script>
 
 <!-- New 2D to 3D Section -->
 <section class="section">
