@@ -26,8 +26,9 @@
         }
         .teaser-image {
             margin: 2rem auto;
-            max-width: 100%;
-            height: auto;
+            width: 1024px;
+            height: 1024px;
+            object-fit: contain;
         }
         .button {
             margin: 0.5rem;
@@ -38,7 +39,9 @@
         .content img, .content video {
             margin: 2rem auto;
             display: block;
-            max-width: 100%;
+            width: 1024px;
+            height: 1024px;
+            object-fit: contain;
         }
         .video-grid {
             display: grid;
@@ -52,14 +55,22 @@
         .center {
             display: block;
             margin: 0 auto;
+            width: 1024px;
+            height: 1024px;
+            object-fit: contain;
+        }
+        .column.is-four-fifths {
+            width: 100% !important;
+            max-width: 1024px;
+            margin: 0 auto;
         }
 
         /* Video slider styles */
         .video-slider {
             position: relative;
             width: 100%;
-            overflow: hidden;
-            margin: 2rem 0;
+            max-width: 1024px;
+            margin: 2rem auto;
         }
         
         .video-container-wrapper {
@@ -80,7 +91,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
         }
 
         .video-title-overlay {
@@ -156,7 +167,7 @@
             <div class="columns is-centered">
                 <div class="column has-text-centered">
                     <h1 class="title is-1 publication-title">
-                        CrossSDF: 3D Reconstruction of Thin Structures From Cross-Sections
+                        CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections
                     </h1>
                     
                     <div class="is-size-5 publication-authors">
@@ -175,11 +186,11 @@
                     </div>
                     
                     <div class="is-size-5 publication-authors">
-                        <span class="author-block"><sup>*</sup>Equal contribution</span>
+                        <span class="author-block"><sup>*</sup>Equal Contribution</span>
                     </div>
 
                     <div class="is-size-5 publication-venue">
-                        in arXiv
+                        In arXiv
                     </div>
                     <div class="teaser-image">
                         <img src="./CrossSDF_Files/teaser.jpg" alt="CrossSDF Teaser">
@@ -192,11 +203,11 @@
                             </span>
                             <span>Paper</span>
                         </a>
-                        <a href="https://iamsalvatore.io/cross_sdf/" class="button is-dark is-rounded">
+                        <a href="https://www.arxiv.org/abs/2412.04120" class="button is-dark is-rounded">
                             <span class="icon">
-                                <i class="fab fa-github"></i>
+                                <i class="fas fa-file-alt"></i>
                             </span>
-                            <span>Code</span>
+                            <span>arXiv</span>
                         </a>
                     </div>
                 </div>
@@ -212,10 +223,58 @@
             <div class="column is-four-fifths">
                 <h2 class="title is-3">Abstract</h2>
                 <div class="content has-text-justified">
-                    <p>We present CrossSDF, a novel approach for reconstructing a 3D signed-distance field from 2D cross-sections. Reconstructing complex structures from planar cross-sections is a challenging problem, with wide-reaching applications in medical imaging, manufacturing, and topography. Out-of-the-box point cloud reconstruction methods can often fail due to the data sparsity between slicing planes, while current bespoke methods struggle to reconstruct thin geometric structures and preserve topological continuity. This is important for medical applications where thin vessel structures are present in CT and MRI scans.</p>
-                    <p>This paper introduces CrossSDF, a novel approach for extracting a 3D signed distance field from 2D signed distances generated from planar contours. Our approach makes the training of neural SDFs contour-aware by using losses designed for the case where geometry is known within 2D slices. Our results demonstrate a significant improvement over existing methods, effectively reconstructing thin structures and producing accurate 3D models without the interpolation artifacts or over-smoothing of prior approaches.</p>
+                    <p>CrossSDF introduces a novel approach for reconstructing 3D signed-distance fields from 2D cross-sections, addressing a fundamental challenge in medical imaging, manufacturing, and topography. While existing point cloud reconstruction methods struggle with sparse data between slicing planes, and current specialized approaches have difficulty with thin structures and topological consistency, CrossSDF excels at reconstructing complex geometries from planar cross-sections.</p>
+                    <p>Our method uniquely combines contour-aware neural SDF training with specialized losses designed for known 2D slice geometry. This results in significantly improved reconstruction quality, particularly for thin structures, while avoiding the interpolation artifacts and over-smoothing common in previous approaches. The method is particularly valuable for medical applications where accurate reconstruction of thin vessel structures from CT and MRI scans is crucial.</p>
                 </div>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pipeline Section -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+            <div class="column is-four-fifths">
+                <h2 class="title is-3">Method Overview</h2>
+                <div>
+                    <img src="./CrossSDF_Files/method_overview.png" class="center">
+                </div>
+                <div class="content has-text-justified">
+                    <p>CrossSDF transforms 2D cross-sectional data into complete 3D neural SDF representations through a sophisticated pipeline that ensures accurate reconstruction of thin structures. Our approach integrates three key innovations: adaptive sampling focused on thin structures, a hybrid encoding combining hash-grid and Fourier features for detail preservation, and a novel symmetric difference loss that maintains topological consistency between slices. This comprehensive approach enables robust reconstruction of complex geometries while preserving fine structural details.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Training Progress Section -->
+<section class="section">
+    <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Training Progress</h2>
+        <div class="video-slider" id="training-evolution-slider">
+            <div class="video-container-wrapper">
+                <div class="video-container">
+                    <div class="video-title-overlay">Armadillo</div>
+                    <video autoplay loop muted playsinline class="training-video" style="object-fit: contain;">
+                        <source src="./videos/armadillo.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="video-container">
+                    <div class="video-title-overlay">Pulmonary Vessels</div>
+                    <video autoplay loop muted playsinline class="training-video" style="object-fit: contain;">
+                        <source src="./videos/pulmonary.mp4" type="video/mp4">
+                    </video>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="slider-dots"></div>
+        </div>
+        <div class="content has-text-justified">
+            <p>Visualization of CrossSDF's reconstruction process, showing convergence from initial predictions to final detailed models for both synthetic and medical structures.</p>
         </div>
     </div>
 </section>
@@ -223,7 +282,7 @@
 <!-- Medical Structures Section -->
 <section class="section">
     <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Comparison of 3D Reconstruction of synthetic medical structures</h2>
+        <h2 class="title is-3 has-text-centered">Comparison of 3D Reconstruction of Synthetic Medical Structures</h2>
         <div class="video-slider">
             <div class="video-container-wrapper">
                 <div class="video-container">
@@ -266,216 +325,17 @@
     </div>
 </section>
 
-<!-- Synthetic Shapes Section -->
-<!-- <section class="section">
-    <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">3D Reconstruction of synthetic shapes</h2>
-        <div class="video-slider">
-            <div class="video-container-wrapper">
-                <div class="video-container">
-                    <div class="video-title-overlay">Twisted Helix</div>
-                    <video autoplay loop muted playsinline>
-                        <source src="./videos/synthetic_shape1.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-container">
-                    <div class="video-title-overlay">Mobius Strip</div>
-                    <video autoplay loop muted playsinline>
-                        <source src="./videos/synthetic_shape2.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-container">
-                    <div class="video-title-overlay">Klein Bottle</div>
-                    <video autoplay loop muted playsinline>
-                        <source src="./videos/synthetic_shape3.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-container">
-                    <div class="video-title-overlay">Torus Knot</div>
-                    <video autoplay loop muted playsinline>
-                        <source src="./videos/synthetic_shape4.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-container">
-                    <div class="video-title-overlay">Interlocked Rings</div>
-                    <video autoplay loop muted playsinline>
-                        <source src="./videos/synthetic_shape5.mp4" type="video/mp4">
-                    </video>
-                </div>
-            </div>
-            <div class="slider-controls">
-                <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="slider-dots"></div>
-        </div>
-    </div>
-</section> -->
-
-<!-- CT Scan Section -->
-<!-- <section class="section">
-    <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">3D Reconstruction of hepatic blood vessels from CT scans</h2>
-        <div class="video-slider">
-            <div class="video-container-wrapper">
-                <div class="video-container">
-                    <div class="video-title-overlay">Portal Vein Network</div>
-                    <video autoplay loop muted playsinline>
-                        <source src="./videos/blood_vessel1.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-container">
-                    <div class="video-title-overlay">Hepatic Artery System</div>
-                    <video autoplay loop muted playsinline>
-                        <source src="./videos/blood_vessel2.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-container">
-                    <div class="video-title-overlay">Biliary Tree Structure</div>
-                    <video autoplay loop muted playsinline>
-                        <source src="./videos/blood_vessel3.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-container">
-                    <div class="video-title-overlay">Venous Drainage</div>
-                    <video autoplay loop muted playsinline>
-                        <source src="./videos/blood_vessel4.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-container">
-                    <div class="video-title-overlay">Complete Vasculature</div>
-                    <video autoplay loop muted playsinline>
-                        <source src="./videos/blood_vessel5.mp4" type="video/mp4">
-                    </video>
-                </div>
-            </div>
-            <div class="slider-controls">
-                <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="slider-dots"></div>
-
-</div>
-    </div>
-</section>
-
-<!-- Visual Comparison Section 
-<section class="section">
-    <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Visual Comparison of 3D Reconstructions across several methods</h2>
-        <div class="video-slider">
-            <div class="video-container-wrapper">
-                <div class="video-container">
-                    <div class="video-title-overlay">Traditional Method</div>
-                    <video autoplay loop muted playsinline>
-                        <source src="./videos/comparison1.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-container">
-                    <div class="video-title-overlay">Point Cloud Based</div>
-                    <video autoplay loop muted playsinline>
-                        <source src="./videos/comparison2.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-container">
-                    <div class="video-title-overlay">Neural Implicit</div>
-                    <video autoplay loop muted playsinline>
-                        <source src="./videos/comparison3.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-container">
-                    <div class="video-title-overlay">Mesh-Based</div>
-                    <video autoplay loop muted playsinline>
-                        <source src="./videos/comparison4.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-container">
-                    <div class="video-title-overlay">CrossSDF (Ours)</div>
-                    <video autoplay loop muted playsinline>
-                        <source src="./videos/comparison5.mp4" type="video/mp4">
-                    </video>
-                </div>
-            </div>
-            <div class="slider-controls">
-                <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="slider-dots"></div>
-        </div>
-    </div>
-</section>
-
-<!-- Training Progress Section  -->
-<section class="section">
-    <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Watch CrossSDF Learn: Training Evolution</h2>
-        <div class="video-slider" id="training-evolution-slider">
-            <div class="video-container-wrapper">
-                <div class="video-container">
-                    <div class="video-title-overlay">Armadillo</div>
-                    <video autoplay loop muted playsinline class="training-video" style="object-fit: contain;">
-                        <source src="./videos/armadillo.mp4" type="video/mp4">
-                    </video>
-                </div>
-                <div class="video-container">
-                    <div class="video-title-overlay">Pulmonaries</div>
-                    <video autoplay loop muted playsinline class="training-video" style="object-fit: contain;">
-                        <source src="./videos/pulmonary.mp4" type="video/mp4">
-                    </video>
-                </div>
-            </div>
-            <div class="slider-controls">
-                <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-                <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
-            </div>
-            <div class="slider-dots"></div>
-        </div>
-        <div class="content has-text-justified">
-            <p>Visualize how CrossSDF progressively learns to reconstruct 3D structures from 2D cross-sections, demonstrating the evolution from initial noisy predictions to precise final reconstructions.</p>
-        </div>
-    </div>
-</section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Only target the training videos
-    const trainingVideos = document.querySelectorAll('#training-evolution-slider .training-video');
-    
-    // Set playback rate only for training videos
-    trainingVideos.forEach(video => {
-        video.playbackRate = 0.5;
-    });
-});
-</script>
-
-<!-- New 2D to 3D Section -->
-<section class="section">
-    <div class="container is-max-desktop">
-        <div class="columns is-centered has-text-centered">
-            <div class="column is-four-fifths">
-                <h2 class="title is-3">From 2D Signed Distance Function to Neural 3D SDF Representation</h2>
-                <div>
-                    <img src="./CrossSDF_Files/method_overview.png" class="center">
-                </div>
-                <div class="content has-text-justified">
-                    <p>Our pipeline transforms 2D signed distance functions from cross-sectional data into a complete 3D neural SDF representation. The process involves careful encoding of spatial information, adaptive sampling strategies, and our novel loss functions to ensure accurate reconstruction of thin structures while maintaining topological consistency between slices.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- Adaptive Sampling Section -->
 <section class="section">
     <div class="container is-max-desktop">
         <div class="columns is-centered has-text-centered">
             <div class="column is-four-fifths">
-                <h3 class="title is-4">Adaptive Sampling and Hybrid Encoding</h3>
+                <h3 class="title is-4">Qualitative results on thin medical structures</h3>
                 <div>
-                    <img src="./CrossSDF_Files/sampling.png" class="center" style="width: 80%;">
+                    <img src="./CrossSDF_Files/thin.png" class="center">
                 </div>
                 <div class="content has-text-justified">
-                    <p>We introduce an adaptive sampling strategy that focuses on regions where thin structures are present, ensuring detailed reconstruction. A hybrid encoding strategy combines hash-grid and Fourier features to capture fine details while maintaining surface smoothness.</p>
+                    <p>Reconstruction results on thin structures featuring the Heart (top row) and Pulmonary (bottom row) for various methods. Results are presented using both input-aligned and non-aligned planes, displayed on the ground truth meshes.</p>
                 </div>
             </div>
         </div>
@@ -487,13 +347,14 @@ document.addEventListener('DOMContentLoaded', function() {
     <div class="container is-max-desktop content">
         <h2 class="title">BibTeX</h2>
         <pre><code>@article{tomandsal2024_crosssdf,
-    title={CrossSDF: 3D Reconstruction of Thin Structures From Cross-Sections},
+    title={CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections},
     author={Walker, Thomas and Esposito, Salvatore and Rebain, Daniel and Vaxman, Amir and Onken, Arno and Li, Changjian and Mac Aodha, Oisin},
     journal={arXiv preprint arXiv:2407.06938},
     year={2024}
 }</code></pre>
     </div>
 </section>
+
 
 <!-- JavaScript for Sliders -->
 <script>
