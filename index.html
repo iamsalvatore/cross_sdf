@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .publication-title {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
+       .publication-title {
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
         }
         .publication-authors {
             margin-bottom: 1rem;
@@ -38,10 +38,12 @@
         .content img, .content video {
             margin: 2rem auto;
             display: block;
-            max-width: 3000px;   /* Maximum width */
-            max-height: 4000px;  /* Maximum height */
-            width: auto;         /* Preserve original width if smaller */
-            height: auto;        /* Preserve original height if smaller */
+            min-width: 100%;        /* Ensure images are at least full width */
+            width: auto;            /* Allow natural sizing */
+            height: auto;           /* Maintain aspect ratio */
+            max-width: 3000px;      /* Maximum width constraint */
+            max-height: 4000px;     /* Maximum height constraint */
+            object-fit: contain;    /* Ensure the image is fully visible */
         }
         .video-grid {
             display: grid;
