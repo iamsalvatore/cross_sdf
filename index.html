@@ -38,9 +38,10 @@
         .content img, .content video {
             margin: 2rem auto;
             display: block;
-            max-width: 100%;
-            width: 1024px;   /* Added specific width */
-            height: 1024px;  /* Added specific height */
+            max-width: 3000px;   /* Maximum width */
+            max-height: 4000px;  /* Maximum height */
+            width: auto;         /* Preserve original width if smaller */
+            height: auto;        /* Preserve original height if smaller */
         }
         .video-grid {
             display: grid;
