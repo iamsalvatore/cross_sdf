@@ -25,10 +25,14 @@
             margin-top: 2rem;
         }
         .teaser-image {
-            margin: 2rem auto;
-            width: 1024px;
-            height: 1024px;
-            object-fit: contain;
+            margin: 1rem auto;
+        }
+        .teaser-image img {
+            max-width: 1024px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
         }
         .button {
             margin: 0.5rem;
@@ -36,53 +40,60 @@
         .icon {
             margin-right: 0.5rem;
         }
-        .content img, .content video {
-            margin: 2rem auto;
+        .content img {
+            max-width: 1024px;
+            width: 100%;
+            height: auto;
             display: block;
-            width: 1024px;
-            height: 1024px;
-            object-fit: contain;
+            margin: 1rem auto;
         }
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1rem;
-            margin: 2rem 0;
+        .content video {
+            max-width: 1024px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 1rem auto;
         }
         .section {
-            padding: 3rem 1.5rem;
+            padding: 2rem 1.5rem;
         }
         .center {
+            max-width: 1024px;
+            width: 100%;
+            height: auto;
             display: block;
             margin: 0 auto;
-            width: 1024px;
-            height: 1024px;
-            object-fit: contain;
         }
         .column.is-four-fifths {
             width: 100% !important;
             max-width: 1024px;
             margin: 0 auto;
         }
-
+    
         /* Video slider styles */
         .video-slider {
             position: relative;
             width: 100%;
             max-width: 1024px;
-            margin: 2rem auto;
+            margin: 1rem auto;
+            aspect-ratio: 16/9;
         }
         
         .video-container-wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             transition: transform 0.3s ease;
-            width: 500%;
         }
         
         .video-container {
-            flex: 0 0 20%;
+            flex: 0 0 100%;
             position: relative;
-            padding-top: 11.25%;
+            width: 100%;
+            height: 100%;
         }
         
         .video-container video {
@@ -93,7 +104,7 @@
             height: 100%;
             object-fit: contain;
         }
-
+    
         .video-title-overlay {
             position: absolute;
             top: 1rem;
@@ -141,7 +152,7 @@
         .slider-dots {
             display: flex;
             justify-content: center;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
         }
         
         .dot {
@@ -363,68 +374,124 @@ document.addEventListener('DOMContentLoaded', function() {
     
     sliders.forEach(slider => {
         const wrapper = slider.querySelector('.video-container-wrapper');
-        const prev = slider.querySelector('.prev');
-        const next = slider.querySelector('.next');
+        const slides = wrapper.children;
+        const prevBtn = slider.querySelector('.prev');
+        const nextBtn = slider.querySelector('.next');
         const dotsContainer = slider.querySelector('.slider-dots');
         
         let currentSlide = 0;
-        const totalSlides = wrapper.children.length;
+        let isTransitioning = false;
+        const slideWidth = 100 / slides.length;
         
         // Create dots
-        for (let i = 0; i < totalSlides; i++) {
+        for (let i = 0; i < slides.length; i++) {
             const dot = document.createElement('div');
             dot.classList.add('dot');
             if (i === 0) dot.classList.add('active');
-            dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-            dot.addEventListener('click', () => goToSlide(i));
             dotsContainer.appendChild(dot);
+            
+            // Add click event to dots
+            dot.addEventListener('click', () => goToSlide(i));
         }
         
+        // Handle slider updates
         function updateSlider() {
-            wrapper.style.transform = `translate3d(-${currentSlide * 20}%, 0, 0)`;
-            const dots = slider.querySelectorAll('.dot');
+            // Update wrapper position
+            wrapper.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+            
+            // Update dots
+            const dots = dotsContainer.querySelectorAll('.dot');
             dots.forEach((dot, index) => {
                 dot.classList.toggle('active', index === currentSlide);
             });
+            
+            // Handle videos
+            Array.from(slides).forEach((slide, index) => {
+                const video = slide.querySelector('video');
+                if (!video) return;
+                
+                if (index === currentSlide) {
+                    video.play();
+                } else {
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            });
         }
         
+        // Navigation function
         function goToSlide(index) {
-            if (index < 0 || index >= totalSlides) return;
+            if (isTransitioning) return;
+            
+            isTransitioning = true;
             currentSlide = index;
             updateSlider();
+            
+            setTimeout(() => {
+                isTransitioning = false;
+            }, 300);
         }
         
-        // Add keyboard navigation
-        slider.setAttribute('tabindex', '0');
+        // Previous slide
+        prevBtn.addEventListener('click', () => {
+            const newIndex = (currentSlide - 1 + slides.length) % slides.length;
+            goToSlide(newIndex);
+        });
+        
+        // Next slide
+        nextBtn.addEventListener('click', () => {
+            const newIndex = (currentSlide + 1) % slides.length;
+            goToSlide(newIndex);
+        });
+        
+        // Keyboard navigation
         slider.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft') {
                 e.preventDefault();
-                goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+                const newIndex = (currentSlide - 1 + slides.length) % slides.length;
+                goToSlide(newIndex);
             } else if (e.key === 'ArrowRight') {
                 e.preventDefault();
-                goToSlide((currentSlide + 1) % totalSlides);
+                const newIndex = (currentSlide + 1) % slides.length;
+                goToSlide(newIndex);
             }
         });
         
-        // Button click handlers with debounce
-        let isTransitioning = false;
+        // Touch events
+        let touchStartX = 0;
+        let touchEndX = 0;
         
-        prev.addEventListener('click', () => {
-            if (isTransitioning) return;
-            isTransitioning = true;
-            goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
-            setTimeout(() => { isTransitioning = false; }, 300);
+        slider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
         });
         
-        next.addEventListener('click', () => {
-            if (isTransitioning) return;
-            isTransitioning = true;
-            goToSlide((currentSlide + 1) % totalSlides);
-            setTimeout(() => { isTransitioning = false; }, 300);
+        slider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
         });
         
-        // Initialize first slide
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const difference = touchStartX - touchEndX;
+            
+            if (Math.abs(difference) < swipeThreshold) return;
+            
+            if (difference > 0) {
+                // Swipe left - next slide
+                const newIndex = (currentSlide + 1) % slides.length;
+                goToSlide(newIndex);
+            } else {
+                // Swipe right - previous slide
+                const newIndex = (currentSlide - 1 + slides.length) % slides.length;
+                goToSlide(newIndex);
+            }
+        }
+        
+        // Initialize slider
         updateSlider();
+        
+        // Make slider focusable for keyboard navigation
+        slider.setAttribute('tabindex', '0');
     });
 });
 </script>
