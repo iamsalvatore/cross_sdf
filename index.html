@@ -259,10 +259,11 @@
     </div>
 </section>
 
-<!-- Training Progress Section -->
+
+<!-- Training Progress Section  -->
 <section class="section">
     <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Training Progress</h2>
+        <h2 class="title is-3 has-text-centered">CrossSDF Training Progress</h2>
         <div class="video-slider" id="training-evolution-slider">
             <div class="video-container-wrapper">
                 <div class="video-container">
@@ -272,7 +273,7 @@
                     </video>
                 </div>
                 <div class="video-container">
-                    <div class="video-title-overlay">Pulmonary Vessels</div>
+                    <div class="video-title-overlay">Pulmonaries</div>
                     <video autoplay loop muted playsinline class="training-video" style="object-fit: contain;">
                         <source src="./videos/pulmonary.mp4" type="video/mp4">
                     </video>
@@ -289,6 +290,20 @@
         </div>
     </div>
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Only target the training videos
+    const trainingVideos = document.querySelectorAll('#training-evolution-slider .training-video');
+    
+    // Set playback rate only for training videos
+    trainingVideos.forEach(video => {
+        video.playbackRate = 0.5;
+    });
+});
+</script>
+
+
 
 <!-- Medical Structures Section -->
 <section class="section">
@@ -369,132 +384,76 @@
 
 <!-- JavaScript for Sliders -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const sliders = document.querySelectorAll('.video-slider');
-    
-    sliders.forEach(slider => {
-        const wrapper = slider.querySelector('.video-container-wrapper');
-        const slides = wrapper.children;
-        const prevBtn = slider.querySelector('.prev');
-        const nextBtn = slider.querySelector('.next');
-        const dotsContainer = slider.querySelector('.slider-dots');
+    document.addEventListener('DOMContentLoaded', function() {
+        const sliders = document.querySelectorAll('.video-slider');
         
-        let currentSlide = 0;
-        let isTransitioning = false;
-        const slideWidth = 100 / slides.length;
-        
-        // Create dots
-        for (let i = 0; i < slides.length; i++) {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if (i === 0) dot.classList.add('active');
-            dotsContainer.appendChild(dot);
+        sliders.forEach(slider => {
+            const wrapper = slider.querySelector('.video-container-wrapper');
+            const prev = slider.querySelector('.prev');
+            const next = slider.querySelector('.next');
+            const dotsContainer = slider.querySelector('.slider-dots');
             
-            // Add click event to dots
-            dot.addEventListener('click', () => goToSlide(i));
-        }
-        
-        // Handle slider updates
-        function updateSlider() {
-            // Update wrapper position
-            wrapper.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+            let currentSlide = 0;
+            const totalSlides = wrapper.children.length;
             
-            // Update dots
-            const dots = dotsContainer.querySelectorAll('.dot');
-            dots.forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
-            });
+            // Create dots
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('div');
+                dot.classList.add('dot');
+                if (i === 0) dot.classList.add('active');
+                dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+                dot.addEventListener('click', () => goToSlide(i));
+                dotsContainer.appendChild(dot);
+            }
             
-            // Handle videos
-            Array.from(slides).forEach((slide, index) => {
-                const video = slide.querySelector('video');
-                if (!video) return;
-                
-                if (index === currentSlide) {
-                    video.play();
-                } else {
-                    video.pause();
-                    video.currentTime = 0;
+            function updateSlider() {
+                wrapper.style.transform = `translate3d(-${currentSlide * 20}%, 0, 0)`;
+                const dots = slider.querySelectorAll('.dot');
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentSlide);
+                });
+            }
+            
+            function goToSlide(index) {
+                if (index < 0 || index >= totalSlides) return;
+                currentSlide = index;
+                updateSlider();
+            }
+            
+            // Add keyboard navigation
+            slider.setAttribute('tabindex', '0');
+            slider.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    goToSlide((currentSlide + 1) % totalSlides);
                 }
             });
-        }
-        
-        // Navigation function
-        function goToSlide(index) {
-            if (isTransitioning) return;
             
-            isTransitioning = true;
-            currentSlide = index;
+            // Button click handlers with debounce
+            let isTransitioning = false;
+            
+            prev.addEventListener('click', () => {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+                setTimeout(() => { isTransitioning = false; }, 300);
+            });
+            
+            next.addEventListener('click', () => {
+                if (isTransitioning) return;
+                isTransitioning = true;
+                goToSlide((currentSlide + 1) % totalSlides);
+                setTimeout(() => { isTransitioning = false; }, 300);
+            });
+            
+            // Initialize first slide
             updateSlider();
-            
-            setTimeout(() => {
-                isTransitioning = false;
-            }, 300);
-        }
-        
-        // Previous slide
-        prevBtn.addEventListener('click', () => {
-            const newIndex = (currentSlide - 1 + slides.length) % slides.length;
-            goToSlide(newIndex);
         });
-        
-        // Next slide
-        nextBtn.addEventListener('click', () => {
-            const newIndex = (currentSlide + 1) % slides.length;
-            goToSlide(newIndex);
-        });
-        
-        // Keyboard navigation
-        slider.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                const newIndex = (currentSlide - 1 + slides.length) % slides.length;
-                goToSlide(newIndex);
-            } else if (e.key === 'ArrowRight') {
-                e.preventDefault();
-                const newIndex = (currentSlide + 1) % slides.length;
-                goToSlide(newIndex);
-            }
-        });
-        
-        // Touch events
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        slider.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-        
-        slider.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-        
-        function handleSwipe() {
-            const swipeThreshold = 50;
-            const difference = touchStartX - touchEndX;
-            
-            if (Math.abs(difference) < swipeThreshold) return;
-            
-            if (difference > 0) {
-                // Swipe left - next slide
-                const newIndex = (currentSlide + 1) % slides.length;
-                goToSlide(newIndex);
-            } else {
-                // Swipe right - previous slide
-                const newIndex = (currentSlide - 1 + slides.length) % slides.length;
-                goToSlide(newIndex);
-            }
-        }
-        
-        // Initialize slider
-        updateSlider();
-        
-        // Make slider focusable for keyboard navigation
-        slider.setAttribute('tabindex', '0');
     });
-});
-</script>
+    </script>
 
 </body>
 </html>
