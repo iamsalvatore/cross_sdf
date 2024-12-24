@@ -7,19 +7,20 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
-    /* Make images (and videos) bigger by default */
-    /* We remove the scoping to .content so that *all* images and videos on the page follow these rules. */
+    /* 
+      Key adjustment:
+      Instead of forcing images to be at least 100%,
+      just make them "up to 100% of the container width".
+    */
     img, video {
-      margin: 2rem auto;
       display: block;
-      min-width: 100%;     /* They will at least fill their parent container’s width */
-      width: auto;         /* Let them scale naturally */
-      height: auto;        /* Maintain aspect ratio */
-      max-width: 3000px;   /* Maximum width constraint */
-      max-height: 4000px;  /* Maximum height constraint */
-      object-fit: contain; /* Ensure the image/video is fully visible within its container */
+      margin: 2rem auto;
+      max-width: 100%;  /* Prevents overshooting container width */
+      height: auto;     /* Keeps correct aspect ratio */
+      object-fit: contain;
     }
 
+    /* Other existing styles */
     .publication-title {
       font-size: 2.5rem;
       margin-bottom: 2rem;
@@ -37,8 +38,6 @@
     .publication-links {
       margin-top: 2rem;
     }
-    /* .teaser-image is still here if you want additional custom styling,
-       but it's no longer responsible for image sizing in this updated approach. */
     .teaser-image {
       margin: 2rem auto;
     }
@@ -48,7 +47,6 @@
     .icon {
       margin-right: 0.5rem;
     }
-
     .video-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -73,10 +71,10 @@
     .video-container-wrapper {
       display: flex;
       transition: transform 0.3s ease;
-      width: 500%;
+      width: 500%; /* 5 slides => 100% x 5 */
     }
     .video-container {
-      flex: 0 0 20%;
+      flex: 0 0 20%; /* Each slide is 20% width of the wrapper */
       position: relative;
       padding-top: 11.25%;
     }
@@ -146,6 +144,7 @@
     }
   </style>
 </head>
+
 <body>
 
 <!-- Hero Section -->
