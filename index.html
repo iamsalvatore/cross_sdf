@@ -89,19 +89,21 @@
     .video-container {
     flex: 0 0 20%;
     position: relative;
-    /* Remove the old padding-top line */
-    aspect-ratio: 16 / 9; /* Ensures this div has some height */
+    /* Either a fixed height: */
+    height: 300px; 
+    /* or a min-height so it can grow: */
+    /* min-height: 300px; */
   }
 
-  /* Keep the video absolutely positioned to fill the container */
   .video-container video {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* or contain, as you prefer */
+    object-fit: cover; /* or contain */
   }
+
 
     .video-title-overlay {
       position: absolute;
