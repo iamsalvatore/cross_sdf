@@ -26,14 +26,12 @@
     video {
       margin: 2rem auto;
       display: block;
-      min-width: 100%;
+      max-width: 80%;
       width: auto;
       height: auto;
-      max-width: 3000px;
       max-height: 4000px;
       object-fit: contain;
     }
-
 
     /* Other existing styles */
     .publication-title {
@@ -225,13 +223,15 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
-          <p>CrossSDF introduces a novel approach for reconstructing 3D signed-distance fields from 2D cross-sections, addressing a fundamental challenge in medical imaging, manufacturing, and topography. While existing point cloud reconstruction methods struggle with sparse data between slicing planes, and current specialized approaches have difficulty with thin structures and topological consistency, CrossSDF excels at reconstructing complex geometries from planar cross-sections.</p>
-          <p>Our method uniquely combines contour-aware neural SDF training with specialized losses designed for known 2D slice geometry. This results in significantly improved reconstruction quality, particularly for thin structures, while avoiding the interpolation artifacts and over-smoothing common in previous approaches. The method is particularly valuable for medical applications where accurate reconstruction of thin vessel structures from CT and MRI scans is crucial.</p>
+          <p>Reconstructing complex structures from planar cross-sections is a challenging problem, with wide-reaching applications in medical imaging, manufacturing, and topography. Out-of-the-box point cloud reconstruction methods can often fail due to the data sparsity between slicing planes, while current bespoke methods struggle to reconstruct thin geometric structures and preserve topological continuity. This is important for medical applications where thin vessel structures are present in CT and MRI scans.</p>
+          <p>This paper introduces CrossSDF, a novel approach for extracting a 3D signed distance field from 2D signed distances generated from planar contours. Our approach makes the training of neural SDFs contour-aware by using losses designed for the case where geometry is known within 2D slices. Our results demonstrate a significant improvement over existing methods, effectively reconstructing thin structures and producing accurate 3D models without the interpolation artifacts or over-smoothing of prior approaches.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+
 
 <!-- Method Overview Section -->
 <section class="section">
@@ -243,7 +243,7 @@
           <img src="./CrossSDF_Files/method_overview.png" class="center">
         </div>
         <div class="content has-text-justified">
-          <p>CrossSDF transforms 2D cross-sectional data into complete 3D neural SDF representations through a sophisticated pipeline that ensures accurate reconstruction of thin structures. Our approach integrates three key innovations: adaptive sampling focused on thin structures, a hybrid encoding combining hash-grid and Fourier features for detail preservation, and a novel symmetric difference loss that maintains topological consistency between slices. This comprehensive approach enables robust reconstruction of complex geometries while preserving fine structural details.</p>
+          <p>Our approach integrates three key innovations: adaptive sampling focused on thin structures, a hybrid encoding combining hash-grid and Fourier features for detail preservation, and a novel symmetric difference loss that maintains topological consistency between slices. This comprehensive approach enables robust reconstruction of complex geometries while preserving fine structural details.</p>
         </div>
       </div>
     </div>
@@ -263,7 +263,7 @@
           </video>
         </div>
         <div class="video-container">
-          <div class="video-title-overlay">CrossSDF</div>
+          <div class="video-title-overlay">CrossSDF(ours)</div>
           <video autoplay loop muted playsinline>
             <source src="./videos/alveolis_us.mp4" type="video/mp4">
           </video>
