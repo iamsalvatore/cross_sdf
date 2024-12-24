@@ -87,18 +87,22 @@
       width: 500%; /* 5 slides => 100% x 5 */
     }
     .video-container {
-      flex: 0 0 20%; /* Each slide is 20% width of the wrapper */
-      position: relative;
-      /* padding-top: 11.25%; */
-    }
-    .video-container video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
+    flex: 0 0 20%;
+    position: relative;
+    /* Remove the old padding-top line */
+    aspect-ratio: 16 / 9; /* Ensures this div has some height */
+  }
+
+  /* Keep the video absolutely positioned to fill the container */
+  .video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* or contain, as you prefer */
+  }
+
     .video-title-overlay {
       position: absolute;
       top: 1rem;
