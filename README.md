@@ -9,10 +9,10 @@ The thin structures dataset consists of six patient-specific, anatomically accur
 
 ## Citation
 
-If you use the GeoGen dataset in your work, please cite the following [paper](https://www.arxiv.org/abs/2412.04120):
+If you use the CrossSDF in your work, please cite the following [paper](https://www.arxiv.org/abs/2412.04120):
 
 ```bibtex
-@inproceedings{esposito2024geogen,
+@inproceedings{tomandsal2024_crosssdf,
     author = {Walker, Thomas and Esposito, Salvatore and Rebain, Daniel and Vaxman, Amir and Onken, Arno and Li, Changjian and Mac Aodha, Oisin},
     title = {CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections},
     booktitle = {arXiv preprint arXiv:2407.06938},
