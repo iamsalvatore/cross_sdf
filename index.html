@@ -8,16 +8,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <style>
-    /* 
-      Key adjustment:
-      Instead of forcing images to be at least 100%,
-      just make them "up to 100% of the container width".
-    */
-    img, video {
+    /* 1. Make the Bulma container wider so images have more room. */
+    .container.is-max-desktop {
+      max-width: 1440px; /* or whichever width you prefer */
+    }
+
+    /* 2. Allow images/videos to take up to 90% of the container’s width. */
+    img,
+    video {
       display: block;
       margin: 2rem auto;
-      max-width: 100%;  /* Prevents overshooting container width */
-      height: auto;     /* Keeps correct aspect ratio */
+      max-width: 90%;  /* images will be bigger but won’t exceed container width */
+      height: auto;
       object-fit: contain;
     }
 
