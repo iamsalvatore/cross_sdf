@@ -87,22 +87,19 @@
       width: 500%; /* 5 slides => 100% x 5 */
     }
     .video-container {
-    flex: 0 0 20%;
-    position: relative;
-    /* Either a fixed height: */
-    height: 300px; 
-    /* or a min-height so it can grow: */
-    /* min-height: 300px; */
-  }
-
-  .video-container video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* or contain */
-  }
+            flex: 0 0 20%;
+            position: relative;
+            padding-top: 11.25%;
+        }
+        
+    .video-container video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 
 
     .video-title-overlay {
