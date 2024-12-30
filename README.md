@@ -5,6 +5,8 @@
 
 ## Disclaimer
 
+The CrossSDF algorithm can be used for non-commercial research and is licensed under the license found in LICENSE.
+
 The thin structures dataset consists of six patient-specific, anatomically accurate, meshes originally introduced for fluid and solid mechanics evaluation which we adapt for 3D reconstruction. We also test CrossSDF on real word data from the IRCADb-01 and medical decathlon datasets, which contains anonymized and annotated CT scans in DICOM format.
 
 ## Citation
