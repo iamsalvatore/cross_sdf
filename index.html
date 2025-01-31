@@ -82,6 +82,8 @@
     }
     .video-container-wrapper {
       display: flex;
+      margin-bottom: 3rem; /* Adds space below the video */
+      overflow: hidden; /* Ensures the video doesn't overflow */
       transition: transform 0.3s ease;
       width: 500%; /* 5 slides => 100% x 5 */
     }
@@ -446,7 +448,7 @@
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">CrossSDF Training Progress</h2>
-    <div class="video-container-wrapper">
+    <div class="video-container-wrapper mb-6">
       <div class="video-container">
         <div class="video-title-overlay">Armadillo</div>
         <video autoplay loop muted playsinline class="training-video" style="object-fit: contain;">
@@ -454,7 +456,7 @@
         </video>
       </div>
     </div>
-    <div class="content has-text-justified mt-4">
+    <div class="content has-text-justified">
       <p>Visualization of CrossSDF's reconstruction process, showing convergence from initial predictions to final detailed models for both synthetic and medical structures.</p>
     </div>
   </div>
