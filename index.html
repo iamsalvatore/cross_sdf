@@ -32,7 +32,6 @@
       max-height: 4000px;
       object-fit: contain;
     }
-
     /* Other existing styles */
     .publication-title {
       font-size: 2.5rem;
@@ -447,19 +446,13 @@
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">CrossSDF Training Progress</h2>
-    <div class="video-slider" id="training-evolution-slider">
-      <div class="video-container-wrapper">
-        <div class="video-container">
-          <div class="video-title-overlay">Armadillo</div>
-          <video autoplay loop muted playsinline class="training-video" style="object-fit: contain;">
-            <source src="./videos/armadillo.mp4" type="video/mp4">
-          </video>
-        </div>
-      <div class="slider-controls">
-        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
+    <div class="video-container-wrapper">
+      <div class="video-container">
+        <div class="video-title-overlay">Armadillo</div>
+        <video autoplay loop muted playsinline class="training-video" style="object-fit: contain;">
+          <source src="./videos/armadillo.mp4" type="video/mp4">
+        </video>
       </div>
-      <div class="slider-dots"></div>
     </div>
     <div class="content has-text-justified">
       <p>Visualization of CrossSDF's reconstruction process, showing convergence from initial predictions to final detailed models for both synthetic and medical structures.</p>
