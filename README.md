@@ -2,6 +2,7 @@
 
 # CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections
 
+For the full project details and latest updates, visit [https://iamsalvatore.io/cross_sdf/](https://iamsalvatore.io/cross_sdf/).
 
 ## Disclaimer
 
@@ -17,7 +18,6 @@ If you use the CrossSDF in your work, please cite the following [paper](https://
 @inproceedings{tomandsal2024_crosssdf,
     author = {Walker, Thomas and Esposito, Salvatore and Rebain, Daniel and Vaxman, Amir and Onken, Arno and Li, Changjian and Mac Aodha, Oisin},
     title = {CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections},
-    booktitle = {arXiv preprint arXiv:2407.06938},
+    Journal = {Computer Vision and Pattern Recognition 2025},
     year = {2024},
 }
-```
