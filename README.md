@@ -18,6 +18,6 @@ If you use the CrossSDF in your work, please cite the following [paper](https://
 @inproceedings{tomandsal2024_crosssdf,
     author = {Walker, Thomas and Esposito, Salvatore and Rebain, Daniel and Vaxman, Amir and Onken, Arno and Li, Changjian and Mac Aodha, Oisin},
     title = {CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections},
-    Journal = {Computer Vision and Pattern Recognition 2025},
-    year = {2024},
+    Journal = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+    year = {2025},
 }
