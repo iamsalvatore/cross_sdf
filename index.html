@@ -88,20 +88,19 @@
       width: 500%; /* 5 slides => 100% x 5 */
     }
     .video-container {
-            flex: 0 0 20%;
-            position: relative;
-            padding-top: 11.25%;
-        }
+      flex: 0 0 20%;
+      position: relative;
+      padding-top: 11.25%;
+    }
         
     .video-container video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
-
 
     .video-title-overlay {
       position: absolute;
@@ -158,6 +157,11 @@
     }
     .dot.active {
       background: #363636;
+    }
+
+    /* New CSS rule to set white background for alveoli videos */
+    .alveoli-video {
+      background-color: white;
     }
   </style>
 </head>
@@ -235,8 +239,6 @@
   </div>
 </section>
 
-
-
 <!-- Method Overview Section -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -262,31 +264,31 @@
       <div class="video-container-wrapper">
         <div class="video-container">
           <div class="video-title-overlay">Ground Truth</div>
-          <video autoplay loop muted playsinline>
+          <video class="alveoli-video" autoplay loop muted playsinline>
             <source src="./videos/alveolis_gt.mp4" type="video/mp4">
           </video>
         </div>
         <div class="video-container">
           <div class="video-title-overlay">CrossSDF(ours)</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/alveolis_us_w.mp4" type="video/mp4">
+          <video class="alveoli-video" autoplay loop muted playsinline>
+            <source src="./videos/alveolis_us.mp4" type="video/mp4">
           </video>
         </div>
         <div class="video-container">
           <div class="video-title-overlay">OReX</div>
-          <video autoplay loop muted playsinline>
+          <video class="alveoli-video" autoplay loop muted playsinline>
             <source src="./videos/alveolis_orex.mp4" type="video/mp4">
           </video>
         </div>
         <div class="video-container">
           <div class="video-title-overlay">Poisson</div>
-          <video autoplay loop muted playsinline>
+          <video class="alveoli-video" autoplay loop muted playsinline>
             <source src="./videos/alveolis_poisson.mp4" type="video/mp4">
           </video>
         </div>
         <div class="video-container">
           <div class="video-title-overlay">POCO</div>
-          <video autoplay loop muted playsinline>
+          <video class="alveoli-video" autoplay loop muted playsinline>
             <source src="./videos/alveolis_poco.mp4" type="video/mp4">
           </video>
         </div>
@@ -299,150 +301,6 @@
     </div>
   </div>
 </section>
-
-<!-- Synthetic Shapes Section (Commented Out) -->
-<!--
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">3D Reconstruction of Synthetic Shapes</h2>
-    <div class="video-slider">
-      <div class="video-container-wrapper">
-        <div class="video-container">
-          <div class="video-title-overlay">Twisted Helix</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/synthetic_shape1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Mobius Strip</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/synthetic_shape2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Klein Bottle</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/synthetic_shape3.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Torus Knot</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/synthetic_shape4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Interlocked Rings</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/synthetic_shape5.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <div class="slider-controls">
-        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
-      </div>
-      <div class="slider-dots"></div>
-    </div>
-  </div>
-</section>
--->
-
-<!-- CT Scan Section (Commented Out) -->
-<!--
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">3D Reconstruction of Hepatic Blood Vessels from CT Scans</h2>
-    <div class="video-slider">
-      <div class="video-container-wrapper">
-        <div class="video-container">
-          <div class="video-title-overlay">Portal Vein Network</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/blood_vessel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Hepatic Artery System</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/blood_vessel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Biliary Tree Structure</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/blood_vessel3.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Venous Drainage</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/blood_vessel4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Complete Vasculature</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/blood_vessel5.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <div class="slider-controls">
-        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
-      </div>
-      <div class="slider-dots"></div>
-    </div>
-  </div>
-</section>
--->
-
-<!-- Visual Comparison Section (Commented Out) -->
-<!--
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Visual Comparison of 3D Reconstructions across Several Methods</h2>
-    <div class="video-slider">
-      <div class="video-container-wrapper">
-        <div class="video-container">
-          <div class="video-title-overlay">Traditional Method</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/comparison1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Point Cloud Based</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/comparison2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Neural Implicit</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/comparison3.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Mesh-Based</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/comparison4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">CrossSDF (Ours)</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/comparison5.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <div class="slider-controls">
-        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
-      </div>
-      <div class="slider-dots"></div>
-    </div>
-  </div>
-</section>
--->
 
 <!-- Training Progress Section -->
 <section class="section">
