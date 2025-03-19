@@ -26,10 +26,8 @@
     video {
       margin: 2rem auto;
       display: block;
-      min-width: 100%;
-      width: auto;
+      width: 100%;
       height: auto;
-      max-height: 4000px;
       object-fit: contain;
     }
     /* Other existing styles */
@@ -73,7 +71,7 @@
       margin: 0 auto;
     }
 
-    /* Video slider styles */
+    /* Video slider styles - FIXED FOR ASPECT RATIO */
     .video-slider {
       position: relative;
       width: 100%;
@@ -88,20 +86,17 @@
       width: 500%; /* 5 slides => 100% x 5 */
     }
     .video-container {
-            flex: 0 0 20%;
-            position: relative;
-            padding-top: 11.25%;
-        }
-
-    .video-container video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      flex: 0 0 20%;
+      position: relative;
+      /* Remove fixed aspect ratio */
     }
 
+    .video-container video {
+      position: relative; /* Changed from absolute to allow natural sizing */
+      width: 100%;
+      height: auto; /* Allow height to adjust based on aspect ratio */
+      object-fit: contain; /* Ensure full video is visible without cropping */
+    }
 
     .video-title-overlay {
       position: absolute;
@@ -158,6 +153,13 @@
     }
     .dot.active {
       background: #363636;
+    }
+    
+    /* Fix for the training video section */
+    .training-video {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
     }
   </style>
 </head>
@@ -235,8 +237,6 @@
   </div>
 </section>
 
-
-
 <!-- Method Overview Section -->
 <section class="section">
   <div class="container is-max-desktop">
@@ -300,163 +300,16 @@
   </div>
 </section>
 
-<!-- Synthetic Shapes Section (Commented Out) -->
-<!--
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">3D Reconstruction of Synthetic Shapes</h2>
-    <div class="video-slider">
-      <div class="video-container-wrapper">
-        <div class="video-container">
-          <div class="video-title-overlay">Twisted Helix</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/synthetic_shape1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Mobius Strip</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/synthetic_shape2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Klein Bottle</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/synthetic_shape3.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Torus Knot</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/synthetic_shape4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Interlocked Rings</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/synthetic_shape5.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <div class="slider-controls">
-        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
-      </div>
-      <div class="slider-dots"></div>
-    </div>
-  </div>
-</section>
--->
-
-<!-- CT Scan Section (Commented Out) -->
-<!--
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">3D Reconstruction of Hepatic Blood Vessels from CT Scans</h2>
-    <div class="video-slider">
-      <div class="video-container-wrapper">
-        <div class="video-container">
-          <div class="video-title-overlay">Portal Vein Network</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/blood_vessel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Hepatic Artery System</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/blood_vessel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Biliary Tree Structure</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/blood_vessel3.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Venous Drainage</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/blood_vessel4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Complete Vasculature</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/blood_vessel5.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <div class="slider-controls">
-        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
-      </div>
-      <div class="slider-dots"></div>
-    </div>
-  </div>
-</section>
--->
-
-<!-- Visual Comparison Section (Commented Out) -->
-<!--
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Visual Comparison of 3D Reconstructions across Several Methods</h2>
-    <div class="video-slider">
-      <div class="video-container-wrapper">
-        <div class="video-container">
-          <div class="video-title-overlay">Traditional Method</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/comparison1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Point Cloud Based</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/comparison2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Neural Implicit</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/comparison3.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Mesh-Based</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/comparison4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">CrossSDF (Ours)</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/comparison5.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <div class="slider-controls">
-        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
-      </div>
-      <div class="slider-dots"></div>
-    </div>
-  </div>
-</section>
--->
-
 <!-- Training Progress Section -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">CrossSDF Training Progress</h2>
-        <div class="video-container-wrapper mb-6">
-          <div class="video-container">
-            <div class="video-title-overlay">Armadillo</div>
-            <video autoplay loop muted playsinline class="training-video" style="object-fit: contain;">
-              <source src="./videos/armadillo.mp4" type="video/mp4">
-            </video>
-          </div>
+        <div>
+          <video autoplay loop muted playsinline class="training-video">
+            <source src="./videos/armadillo.mp4" type="video/mp4">
+          </video>
         </div>
         <div class="content has-text-justified">
           <p>
@@ -464,11 +317,15 @@
             from sphere initialization to final reconstruction.
           </p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   // Only target the training videos
-  const trainingVideos = document.querySelectorAll('#training-evolution-slider .training-video');
+  const trainingVideos = document.querySelectorAll('.training-video');
 
   // Set playback rate only for training videos
   trainingVideos.forEach(video => {
