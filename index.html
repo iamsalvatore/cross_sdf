@@ -8,14 +8,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
   <!-- Font Awesome for icons (including GitHub icon) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
   <style>
-    /* Keep the Bulma container wider if you need more room */
     .container.is-max-desktop {
       max-width: 1440px;
     }
-
-    /* Only enlarge images up to 90% container width */
     img {
       display: block;
       margin: 2rem auto;
@@ -23,8 +19,6 @@
       height: auto;
       object-fit: contain;
     }
-
-    /* Basic video styling */
     video {
       margin: 2rem auto;
       display: block;
@@ -34,8 +28,6 @@
       max-height: 4000px;
       object-fit: contain;
     }
-
-    /* Titles & text blocks */
     .publication-title {
       font-size: 2.5rem;
       margin-bottom: 2rem;
@@ -75,7 +67,6 @@
       display: block;
       margin: 0 auto;
     }
-
     /* Video slider styles */
     .video-slider {
       position: relative;
@@ -85,16 +76,16 @@
     }
     .video-container-wrapper {
       display: flex;
-      margin-bottom: 3rem; /* Adds space below the video */
-      overflow: hidden;    /* Ensures the video doesn't overflow */
+      margin-bottom: 3rem;
+      overflow: hidden;
       transition: transform 0.3s ease;
-      width: 500%;         /* 5 slides => 100% x 5 */
+      width: 500%; /* 5 slides */
     }
     .video-container {
       flex: 0 0 20%;
       position: relative;
-      padding-top: 100%;
-      background-color: white; /* White background behind the video */
+      padding-top: 100%;  /* 1:1 aspect ratio for 1200×1200 video */
+      background-color: white;
     }
     .video-container video {
       position: absolute;
@@ -102,7 +93,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain; /* Ensures the entire video is visible */
     }
     .video-title-overlay {
       position: absolute;
@@ -118,8 +109,6 @@
       max-width: 40%;
       text-align: right;
     }
-
-    /* Slider controls */
     .slider-controls {
       position: absolute;
       width: 100%;
@@ -164,7 +153,6 @@
     }
   </style>
 </head>
-
 <body>
 
 <!-- Hero Section -->
@@ -176,7 +164,6 @@
           <h1 class="title is-1 publication-title">
             CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections
           </h1>
-          
           <div class="is-size-5 publication-authors">
             <span class="author-block">Thomas Walker<sup>*1</sup></span>
             <span class="author-block">Salvatore Esposito<sup>*1</sup></span>
@@ -186,41 +173,31 @@
             <span class="author-block">Changjian Li<sup>1</sup></span>
             <span class="author-block">Oisin Mac Aodha<sup>1</sup></span>
           </div>
-
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>1</sup>University of Edinburgh</span>
             <span class="author-block"><sup>2</sup>University of British Columbia</span>
           </div>
-          
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>*</sup>Equal Contribution</span>
           </div>
-
           <div class="is-size-5 publication-venue">
             In Computer Vision and Pattern Recognition 2025
           </div>
           <div class="teaser-image">
             <img src="./CrossSDF_Files/teaser.jpg" alt="CrossSDF Teaser">
           </div>
-
           <!-- Publication Links with GitHub icon -->
           <div class="publication-links">
             <a href="https://www.arxiv.org/abs/2412.04120" class="button is-dark is-rounded">
-              <span class="icon">
-                <i class="fas fa-file-pdf"></i>
-              </span>
+              <span class="icon"><i class="fas fa-file-pdf"></i></span>
               <span>Paper</span>
             </a>
             <a href="https://www.arxiv.org/abs/2412.04120" class="button is-dark is-rounded">
-              <span class="icon">
-                <i class="fas fa-file-alt"></i>
-              </span>
+              <span class="icon"><i class="fas fa-file-alt"></i></span>
               <span>arXiv</span>
             </a>
             <a href="https://github.com/YourGitHubRepoHere" class="button is-dark is-rounded">
-              <span class="icon">
-                <i class="fab fa-github"></i>
-              </span>
+              <span class="icon"><i class="fab fa-github"></i></span>
               <span>GitHub</span>
             </a>
           </div>
@@ -262,7 +239,7 @@
   </div>
 </section>
 
-<!-- Comparison of 3D Reconstruction of Synthetic Medical Structures -->
+<!-- Comparison of 3D Reconstruction Section -->
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Comparison of 3D Reconstruction of Synthetic Medical Structures</h2>
@@ -329,8 +306,7 @@
         </div>
         <div class="content has-text-centered">
           <p>
-            Visualization of CrossSDF's training on an example scene, showing convergence
-            from sphere initialization to final reconstruction.
+            Visualization of CrossSDF's training on an example scene, showing convergence from sphere initialization to final reconstruction.
           </p>
         </div>
       </div>
@@ -338,7 +314,7 @@
   </div>
 </section>
 
-<!-- Qualitative Results on Thin Medical Structures -->
+<!-- Qualitative Results on Thin Medical Structures Section -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
@@ -348,7 +324,9 @@
           <img src="./CrossSDF_Files/thin.png" class="center" alt="Thin Structures">
         </div>
         <div class="content has-text-justified">
-          <p>Reconstruction results on thin structures featuring the Heart (top row) and Pulmonary (bottom row) for various methods. Results are presented using both input-aligned and non-aligned planes, displayed on the ground truth meshes.</p>
+          <p>
+            Reconstruction results on thin structures featuring the Heart (top row) and Pulmonary (bottom row) for various methods. Results are presented using both input-aligned and non-aligned planes, displayed on the ground truth meshes.
+          </p>
         </div>
       </div>
     </div>
