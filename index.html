@@ -4,13 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections</title>
+  <!-- Bulma CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+  <!-- Font Awesome for icons (including GitHub icon) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <style>
     /* Keep the Bulma container wider if you need more room */
     .container.is-max-desktop {
-      max-width: 1440px; /* or whatever you prefer */
+      max-width: 1440px;
     }
 
     /* Only enlarge images up to 90% container width */
@@ -22,7 +24,7 @@
       object-fit: contain;
     }
 
-    /* Keep videos as they were before (no change) */
+    /* Keep videos as they were before */
     video {
       margin: 2rem auto;
       display: block;
@@ -32,6 +34,7 @@
       max-height: 4000px;
       object-fit: contain;
     }
+
     /* Other existing styles */
     .publication-title {
       font-size: 2.5rem;
@@ -82,8 +85,8 @@
     }
     .video-container-wrapper {
       display: flex;
-      margin-bottom: 3rem; /* Adds space below the video */
-      overflow: hidden; /* Ensures the video doesn't overflow */
+      margin-bottom: 3rem;
+      overflow: hidden;
       transition: transform 0.3s ease;
       width: 500%; /* 5 slides => 100% x 5 */
     }
@@ -91,8 +94,8 @@
       flex: 0 0 20%;
       position: relative;
       padding-top: 11.25%;
+      background-color: white; /* Set white background here */
     }
-        
     .video-container video {
       position: absolute;
       top: 0;
@@ -101,7 +104,6 @@
       height: 100%;
       object-fit: cover;
     }
-
     .video-title-overlay {
       position: absolute;
       top: 1rem;
@@ -158,11 +160,6 @@
     .dot.active {
       background: #363636;
     }
-
-    /* New CSS rule to set white background for alveoli videos */
-    .alveoli-video {
-      background-color: white;
-    }
   </style>
 </head>
 
@@ -204,6 +201,7 @@
             <img src="./CrossSDF_Files/teaser.jpg" alt="CrossSDF Teaser">
           </div>
 
+          <!-- Publication Links with GitHub icon -->
           <div class="publication-links">
             <a href="https://www.arxiv.org/abs/2412.04120" class="button is-dark is-rounded">
               <span class="icon">
@@ -216,6 +214,12 @@
                 <i class="fas fa-file-alt"></i>
               </span>
               <span>arXiv</span>
+            </a>
+            <a href="https://github.com/YourGitHubRepoHere" class="button is-dark is-rounded">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span>GitHub</span>
             </a>
           </div>
         </div>
@@ -246,7 +250,7 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Method Overview</h2>
         <div>
-          <img src="./CrossSDF_Files/method_overview.png" class="center">
+          <img src="./CrossSDF_Files/method_overview.png" class="center" alt="Method Overview">
         </div>
         <div class="content has-text-justified">
           <p>Our approach integrates three key innovations: adaptive sampling focused on thin structures, a hybrid encoding combining hash-grid and Fourier features for detail preservation, and a novel symmetric difference loss that maintains topological consistency between slices. This comprehensive approach enables robust reconstruction of complex geometries while preserving fine structural details.</p>
@@ -256,7 +260,7 @@
   </div>
 </section>
 
-<!-- Comparison of 3D Reconstruction of Synthetic Medical Structures Section -->
+<!-- Comparison of 3D Reconstruction Section -->
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Comparison of 3D Reconstruction of Synthetic Medical Structures</h2>
@@ -264,31 +268,31 @@
       <div class="video-container-wrapper">
         <div class="video-container">
           <div class="video-title-overlay">Ground Truth</div>
-          <video class="alveoli-video" autoplay loop muted playsinline>
+          <video autoplay loop muted playsinline>
             <source src="./videos/alveolis_gt.mp4" type="video/mp4">
           </video>
         </div>
         <div class="video-container">
           <div class="video-title-overlay">CrossSDF(ours)</div>
-          <video class="alveoli-video" autoplay loop muted playsinline>
+          <video autoplay loop muted playsinline>
             <source src="./videos/alveolis_us.mp4" type="video/mp4">
           </video>
         </div>
         <div class="video-container">
           <div class="video-title-overlay">OReX</div>
-          <video class="alveoli-video" autoplay loop muted playsinline>
+          <video autoplay loop muted playsinline>
             <source src="./videos/alveolis_orex.mp4" type="video/mp4">
           </video>
         </div>
         <div class="video-container">
           <div class="video-title-overlay">Poisson</div>
-          <video class="alveoli-video" autoplay loop muted playsinline>
+          <video autoplay loop muted playsinline>
             <source src="./videos/alveolis_poisson.mp4" type="video/mp4">
           </video>
         </div>
         <div class="video-container">
           <div class="video-title-overlay">POCO</div>
-          <video class="alveoli-video" autoplay loop muted playsinline>
+          <video autoplay loop muted playsinline>
             <source src="./videos/alveolis_poco.mp4" type="video/mp4">
           </video>
         </div>
@@ -316,24 +320,16 @@
             </video>
           </div>
         </div>
-        <div class="content has-text-justified">
+        <div class="content has-text-centered">
           <p>
             Visualization of CrossSDF's training on an example scene, showing convergence
             from sphere initialization to final reconstruction.
           </p>
         </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  // Only target the training videos
-  const trainingVideos = document.querySelectorAll('#training-evolution-slider .training-video');
-  
-  // Set playback rate only for training videos
-  trainingVideos.forEach(video => {
-    video.playbackRate = 0.5;
-  });
-});
-</script>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- Adaptive Sampling Section -->
 <section class="section">
@@ -342,7 +338,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="column is-four-fifths">
         <h3 class="title is-4">Qualitative Results on Thin Medical Structures</h3>
         <div>
-          <img src="./CrossSDF_Files/thin.png" class="center">
+          <img src="./CrossSDF_Files/thin.png" class="center" alt="Thin Structures">
         </div>
         <div class="content has-text-justified">
           <p>Reconstruction results on thin structures featuring the Heart (top row) and Pulmonary (bottom row) for various methods. Results are presented using both input-aligned and non-aligned planes, displayed on the ground truth meshes.</p>
