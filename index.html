@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections</title>
-  <!-- Bulma CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css" />
-  <!-- Font Awesome for icons (including GitHub icon) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
   <style>
+    /* Keep the Bulma container wider if you need more room */
     .container.is-max-desktop {
-      max-width: 1440px;
+      max-width: 1440px; /* or whatever you prefer */
     }
+
+    /* Only enlarge images up to 90% container width */
     img {
       display: block;
       margin: 2rem auto;
@@ -19,12 +21,18 @@
       height: auto;
       object-fit: contain;
     }
+
+    /* Keep videos as they were before (no change) */
     video {
+      margin: 2rem auto;
       display: block;
-      width: 100%;
-      height: 100%;
+      min-width: 100%;
+      width: auto;
+      height: auto;
+      max-height: 4000px;
       object-fit: contain;
     }
+    /* Other existing styles */
     .publication-title {
       font-size: 2.5rem;
       margin-bottom: 2rem;
@@ -64,32 +72,37 @@
       display: block;
       margin: 0 auto;
     }
+
     /* Video slider styles */
     .video-slider {
       position: relative;
+      width: 100%;
       overflow: hidden;
-      max-width: 1000px; /* Adjust slider max-width as desired */
-      margin: 2rem auto;
+      margin: 2rem 0;
     }
     .video-container-wrapper {
       display: flex;
+      margin-bottom: 3rem; /* Adds space below the video */
+      overflow: hidden; /* Ensures the video doesn't overflow */
       transition: transform 0.3s ease;
-      /* No fixed width: width will be sum of children */
+      width: 500%; /* 5 slides => 100% x 5 */
     }
     .video-container {
-      /* Fixed size for each video slide */
-      width: 300px;
-      position: relative;
-      padding-top: 100%; /* 1:1 ratio */
-      background-color: white;
-      flex: 0 0 auto;
-      margin-right: 1rem; /* Optional gap between slides */
-    }
+            flex: 0 0 20%;
+            position: relative;
+            padding-top: 11.25%;
+        }
+
     .video-container video {
-      position: absolute;
-      top: 0;
-      left: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
+
+
     .video-title-overlay {
       position: absolute;
       top: 1rem;
@@ -148,273 +161,424 @@
     }
   </style>
 </head>
+
 <body>
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-body">
-      <div class="container is-max-desktop">
-        <div class="columns is-centered">
-          <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">
-              CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections
-            </h1>
-            <div class="is-size-5 publication-authors">
-              <span class="author-block">Thomas Walker<sup>*1</sup></span>
-              <span class="author-block">Salvatore Esposito<sup>*1</sup></span>
-              <span class="author-block">Daniel Rebain<sup>2</sup></span>
-              <span class="author-block">Amir Vaxman<sup>1</sup></span>
-              <span class="author-block">Arno Onken<sup>1</sup></span>
-              <span class="author-block">Changjian Li<sup>1</sup></span>
-              <span class="author-block">Oisin Mac Aodha<sup>1</sup></span>
-            </div>
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>1</sup>University of Edinburgh</span>
-              <span class="author-block"><sup>2</sup>University of British Columbia</span>
-            </div>
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>*</sup>Equal Contribution</span>
-            </div>
-            <div class="is-size-5 publication-venue">
-              In Computer Vision and Pattern Recognition 2025
-            </div>
-            <div class="teaser-image">
-              <img src="./CrossSDF_Files/teaser.jpg" alt="CrossSDF Teaser" />
-            </div>
-            <!-- Publication Links with GitHub icon -->
-            <div class="publication-links">
-              <a href="https://www.arxiv.org/abs/2412.04120" class="button is-dark is-rounded">
-                <span class="icon"><i class="fas fa-file-pdf"></i></span>
-                <span>Paper</span>
-              </a>
-              <a href="https://www.arxiv.org/abs/2412.04120" class="button is-dark is-rounded">
-                <span class="icon"><i class="fas fa-file-alt"></i></span>
-                <span>arXiv</span>
-              </a>
-              <a href="https://github.com/YourGitHubRepoHere" class="button is-dark is-rounded">
-                <span class="icon"><i class="fab fa-github"></i></span>
-                <span>GitHub</span>
-              </a>
-            </div>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">
+            CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections
+          </h1>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">Thomas Walker<sup>*1</sup></span>
+            <span class="author-block">Salvatore Esposito<sup>*1</sup></span>
+            <span class="author-block">Daniel Rebain<sup>2</sup></span>
+            <span class="author-block">Amir Vaxman<sup>1</sup></span>
+            <span class="author-block">Arno Onken<sup>1</sup></span>
+            <span class="author-block">Changjian Li<sup>1</sup></span>
+            <span class="author-block">Oisin Mac Aodha<sup>1</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>University of Edinburgh</span>
+            <span class="author-block"><sup>2</sup>University of British Columbia</span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>*</sup>Equal Contribution</span>
+          </div>
+
+          <div class="is-size-5 publication-venue">
+            In Computer Vision and Pattern Recognition 2025
+          </div>
+          <div class="teaser-image">
+            <img src="./CrossSDF_Files/teaser.jpg" alt="CrossSDF Teaser">
+          </div>
+
+          <div class="publication-links">
+            <a href="https://www.arxiv.org/abs/2412.04120" class="button is-dark is-rounded">
+              <span class="icon">
+                <i class="fas fa-file-pdf"></i>
+              </span>
+              <span>Paper</span>
+            </a>
+            <a href="https://www.arxiv.org/abs/2412.04120" class="button is-dark is-rounded">
+              <span class="icon">
+                <i class="fas fa-file-alt"></i>
+              </span>
+              <span>arXiv</span>
+            </a>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Abstract Section -->
-  <section class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Abstract</h2>
-          <div class="content has-text-justified">
-            <p>
-              Reconstructing complex structures from planar cross-sections is a challenging problem, with wide-reaching applications in medical imaging, manufacturing, and topography. Out-of-the-box point cloud reconstruction methods can often fail due to the data sparsity between slicing planes, while current bespoke methods struggle to reconstruct thin geometric structures and preserve topological continuity. This is important for medical applications where thin vessel structures are present in CT and MRI scans.
-            </p>
-            <p>
-              This paper introduces CrossSDF, a novel approach for extracting a 3D signed distance field from 2D signed distances generated from planar contours. Our approach makes the training of neural SDFs contour-aware by using losses designed for the case where geometry is known within 2D slices. Our results demonstrate a significant improvement over existing methods, effectively reconstructing thin structures and producing accurate 3D models without the interpolation artifacts or over-smoothing of prior approaches.
-            </p>
-          </div>
+<!-- Abstract Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>Reconstructing complex structures from planar cross-sections is a challenging problem, with wide-reaching applications in medical imaging, manufacturing, and topography. Out-of-the-box point cloud reconstruction methods can often fail due to the data sparsity between slicing planes, while current bespoke methods struggle to reconstruct thin geometric structures and preserve topological continuity. This is important for medical applications where thin vessel structures are present in CT and MRI scans.</p>
+          <p>This paper introduces CrossSDF, a novel approach for extracting a 3D signed distance field from 2D signed distances generated from planar contours. Our approach makes the training of neural SDFs contour-aware by using losses designed for the case where geometry is known within 2D slices. Our results demonstrate a significant improvement over existing methods, effectively reconstructing thin structures and producing accurate 3D models without the interpolation artifacts or over-smoothing of prior approaches.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Method Overview Section -->
-  <section class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Method Overview</h2>
-          <div>
-            <img src="./CrossSDF_Files/method_overview.png" class="center" alt="Method Overview" />
-          </div>
-          <div class="content has-text-justified">
-            <p>
-              Our approach integrates three key innovations: adaptive sampling focused on thin structures, a hybrid encoding combining hash-grid and Fourier features for detail preservation, and a novel symmetric difference loss that maintains topological consistency between slices. This comprehensive approach enables robust reconstruction of complex geometries while preserving fine structural details.
-            </p>
-          </div>
+
+
+<!-- Method Overview Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method Overview</h2>
+        <div>
+          <img src="./CrossSDF_Files/method_overview.png" class="center">
+        </div>
+        <div class="content has-text-justified">
+          <p>Our approach integrates three key innovations: adaptive sampling focused on thin structures, a hybrid encoding combining hash-grid and Fourier features for detail preservation, and a novel symmetric difference loss that maintains topological consistency between slices. This comprehensive approach enables robust reconstruction of complex geometries while preserving fine structural details.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Comparison of 3D Reconstruction Section -->
-  <section class="section">
-    <div class="container is-max-desktop">
-      <h2 class="title is-3 has-text-centered">Comparison of 3D Reconstruction of Synthetic Medical Structures</h2>
-      <div class="video-slider">
-        <div class="video-container-wrapper">
-          <!-- Slide 1 -->
+<!-- Comparison of 3D Reconstruction of Synthetic Medical Structures Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Comparison of 3D Reconstruction of Synthetic Medical Structures</h2>
+    <div class="video-slider">
+      <div class="video-container-wrapper">
+        <div class="video-container">
+          <div class="video-title-overlay">Ground Truth</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/alveolis_gt.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">CrossSDF(ours)</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/alveolis_us.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">OReX</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/alveolis_orex.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">Poisson</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/alveolis_poisson.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">POCO</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/alveolis_poco.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="slider-controls">
+        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="slider-dots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- Synthetic Shapes Section (Commented Out) -->
+<!--
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">3D Reconstruction of Synthetic Shapes</h2>
+    <div class="video-slider">
+      <div class="video-container-wrapper">
+        <div class="video-container">
+          <div class="video-title-overlay">Twisted Helix</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/synthetic_shape1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">Mobius Strip</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/synthetic_shape2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">Klein Bottle</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/synthetic_shape3.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">Torus Knot</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/synthetic_shape4.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">Interlocked Rings</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/synthetic_shape5.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="slider-controls">
+        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="slider-dots"></div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- CT Scan Section (Commented Out) -->
+<!--
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">3D Reconstruction of Hepatic Blood Vessels from CT Scans</h2>
+    <div class="video-slider">
+      <div class="video-container-wrapper">
+        <div class="video-container">
+          <div class="video-title-overlay">Portal Vein Network</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/blood_vessel1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">Hepatic Artery System</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/blood_vessel2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">Biliary Tree Structure</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/blood_vessel3.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">Venous Drainage</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/blood_vessel4.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">Complete Vasculature</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/blood_vessel5.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="slider-controls">
+        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="slider-dots"></div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- Visual Comparison Section (Commented Out) -->
+<!--
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Visual Comparison of 3D Reconstructions across Several Methods</h2>
+    <div class="video-slider">
+      <div class="video-container-wrapper">
+        <div class="video-container">
+          <div class="video-title-overlay">Traditional Method</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/comparison1.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">Point Cloud Based</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/comparison2.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">Neural Implicit</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/comparison3.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">Mesh-Based</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/comparison4.mp4" type="video/mp4">
+          </video>
+        </div>
+        <div class="video-container">
+          <div class="video-title-overlay">CrossSDF (Ours)</div>
+          <video autoplay loop muted playsinline>
+            <source src="./videos/comparison5.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="slider-controls">
+        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
+        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="slider-dots"></div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- Training Progress Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">CrossSDF Training Progress</h2>
+        <div class="video-container-wrapper mb-6">
           <div class="video-container">
-            <div class="video-title-overlay">Ground Truth</div>
-            <video autoplay loop muted playsinline>
-              <source src="./videos/alveolis_gt.mp4" type="video/mp4" />
+            <div class="video-title-overlay">Armadillo</div>
+            <video autoplay loop muted playsinline class="training-video" style="object-fit: contain;">
+              <source src="./videos/armadillo.mp4" type="video/mp4">
             </video>
           </div>
-          <!-- Slide 2 -->
-          <div class="video-container">
-            <div class="video-title-overlay">CrossSDF (ours)</div>
-            <video autoplay loop muted playsinline>
-              <source src="./videos/alveolis_us.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <!-- Slide 3 -->
-          <div class="video-container">
-            <div class="video-title-overlay">OReX</div>
-            <video autoplay loop muted playsinline>
-              <source src="./videos/alveolis_orex.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <!-- Slide 4 -->
-          <div class="video-container">
-            <div class="video-title-overlay">Poisson</div>
-            <video autoplay loop muted playsinline>
-              <source src="./videos/alveolis_poisson.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <!-- Slide 5 -->
-          <div class="video-container">
-            <div class="video-title-overlay">POCO</div>
-            <video autoplay loop muted playsinline>
-              <source src="./videos/alveolis_poco.mp4" type="video/mp4" />
-            </video>
-          </div>
         </div>
-        <div class="slider-controls">
-          <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-          <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
+        <div class="content has-text-justified">
+          <p>
+            Visualization of CrossSDF's training on an example scene, showing convergence
+            from sphere initialization to final reconstruction.
+          </p>
         </div>
-        <div class="slider-dots"></div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Training Progress Section -->
-  <section class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">CrossSDF Training Progress</h2>
-          <div class="video-container-wrapper" style="justify-content: center; margin-bottom: 1rem;">
-            <div class="video-container">
-              <div class="video-title-overlay">Armadillo</div>
-              <video autoplay loop muted playsinline class="training-video">
-                <source src="./videos/armadillo.mp4" type="video/mp4" />
-              </video>
-            </div>
-          </div>
-          <div class="content has-text-centered">
-            <p>
-              Visualization of CrossSDF's training on an example scene, showing convergence from sphere initialization to final reconstruction.
-            </p>
-          </div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Only target the training videos
+  const trainingVideos = document.querySelectorAll('#training-evolution-slider .training-video');
+
+  // Set playback rate only for training videos
+  trainingVideos.forEach(video => {
+    video.playbackRate = 0.5;
+  });
+});
+</script>
+
+<!-- Adaptive Sampling Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h3 class="title is-4">Qualitative Results on Thin Medical Structures</h3>
+        <div>
+          <img src="./CrossSDF_Files/thin.png" class="center">
+        </div>
+        <div class="content has-text-justified">
+          <p>Reconstruction results on thin structures featuring the Heart (top row) and Pulmonary (bottom row) for various methods. Results are presented using both input-aligned and non-aligned planes, displayed on the ground truth meshes.</p>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Qualitative Results Section -->
-  <section class="section">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h3 class="title is-4">Qualitative Results on Thin Medical Structures</h3>
-          <div>
-            <img src="./CrossSDF_Files/thin.png" class="center" alt="Thin Structures" />
-          </div>
-          <div class="content has-text-justified">
-            <p>
-              Reconstruction results on thin structures featuring the Heart (top row) and Pulmonary (bottom row) for various methods. Results are presented using both input-aligned and non-aligned planes, displayed on the ground truth meshes.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- BibTeX Section -->
-  <section class="section" id="BibTeX">
-    <div class="container is-max-desktop content">
-      <h2 class="title">BibTeX</h2>
-      <pre><code>@article{tomandsal2024_crosssdf,
+<!-- BibTeX Section -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{tomandsal2024_crosssdf,
     title={CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections},
     author={Walker, Thomas and Esposito, Salvatore and Rebain, Daniel and Vaxman, Amir and Onken, Arno and Li, Changjian and Mac Aodha, Oisin},
     journal={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
     year={2025}
 }</code></pre>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <!-- JavaScript for Slider -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const sliders = document.querySelectorAll('.video-slider');
-      sliders.forEach(slider => {
-        const wrapper = slider.querySelector('.video-container-wrapper');
-        const prev = slider.querySelector('.prev');
-        const next = slider.querySelector('.next');
-        const dotsContainer = slider.querySelector('.slider-dots');
-        const slides = wrapper.querySelectorAll('.video-container');
-        let currentSlide = 0;
-        const slideWidth = slides[0].offsetWidth + 16; // width + margin-right (adjust as needed)
-        const totalSlides = slides.length;
-        
-        // Create dots
-        for (let i = 0; i < totalSlides; i++) {
-          const dot = document.createElement('div');
-          dot.classList.add('dot');
-          if (i === 0) dot.classList.add('active');
-          dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
-          dot.addEventListener('click', () => goToSlide(i));
-          dotsContainer.appendChild(dot);
-        }
-        
-        function updateSlider() {
-          wrapper.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
-          const dots = slider.querySelectorAll('.dot');
-          dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentSlide);
-          });
-        }
-        
-        function goToSlide(index) {
-          if (index < 0 || index >= totalSlides) return;
-          currentSlide = index;
-          updateSlider();
-        }
-        
-        // Keyboard navigation
-        slider.setAttribute('tabindex', '0');
-        slider.addEventListener('keydown', (e) => {
-          if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
-          } else if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            goToSlide((currentSlide + 1) % totalSlides);
-          }
-        });
-        
-        // Button navigation with small debounce
-        let isTransitioning = false;
-        prev.addEventListener('click', () => {
-          if (isTransitioning) return;
-          isTransitioning = true;
-          goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
-          setTimeout(() => { isTransitioning = false; }, 300);
-        });
-        next.addEventListener('click', () => {
-          if (isTransitioning) return;
-          isTransitioning = true;
-          goToSlide((currentSlide + 1) % totalSlides);
-          setTimeout(() => { isTransitioning = false; }, 300);
-        });
-        
-        // Initialize slider
-        updateSlider();
+<!-- JavaScript for Sliders -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const sliders = document.querySelectorAll('.video-slider');
+
+  sliders.forEach(slider => {
+    const wrapper = slider.querySelector('.video-container-wrapper');
+    const prev = slider.querySelector('.prev');
+    const next = slider.querySelector('.next');
+    const dotsContainer = slider.querySelector('.slider-dots');
+
+    let currentSlide = 0;
+    const totalSlides = wrapper.children.length;
+
+    // Create dots
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('div');
+      dot.classList.add('dot');
+      if (i === 0) dot.classList.add('active');
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    }
+
+    function updateSlider() {
+      wrapper.style.transform = `translate3d(-${currentSlide * 20}%, 0, 0)`;
+      const dots = slider.querySelectorAll('.dot');
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
       });
+    }
+
+    function goToSlide(index) {
+      if (index < 0 || index >= totalSlides) return;
+      currentSlide = index;
+      updateSlider();
+    }
+
+    // Add keyboard navigation
+    slider.setAttribute('tabindex', '0');
+    slider.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        goToSlide((currentSlide + 1) % totalSlides);
+      }
     });
-  </script>
+
+    // Button click handlers with a small debounce
+    let isTransitioning = false;
+
+    prev.addEventListener('click', () => {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
+      setTimeout(() => { isTransitioning = false; }, 300);
+    });
+
+    next.addEventListener('click', () => {
+      if (isTransitioning) return;
+      isTransitioning = true;
+      goToSlide((currentSlide + 1) % totalSlides);
+      setTimeout(() => { isTransitioning = false; }, 300);
+    });
+
+    // Initialize first slide
+    updateSlider();
+  });
+});
+</script>
+
 </body>
 </html>
