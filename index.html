@@ -24,7 +24,7 @@
       object-fit: contain;
     }
 
-    /* Keep videos as they were before */
+    /* Basic video styling */
     video {
       margin: 2rem auto;
       display: block;
@@ -35,7 +35,7 @@
       object-fit: contain;
     }
 
-    /* Other existing styles */
+    /* Titles & text blocks */
     .publication-title {
       font-size: 2.5rem;
       margin-bottom: 2rem;
@@ -85,16 +85,17 @@
     }
     .video-container-wrapper {
       display: flex;
-      margin-bottom: 3rem;
-      overflow: hidden;
+      margin-bottom: 3rem; /* Adds space below the video */
+      overflow: hidden;    /* Ensures the video doesn't overflow */
       transition: transform 0.3s ease;
-      width: 500%; /* 5 slides => 100% x 5 */
+      width: 500%;         /* 5 slides => 100% x 5 */
     }
     .video-container {
       flex: 0 0 20%;
       position: relative;
-      padding-top: 11.25%;
-      background-color: white; /* Set white background here */
+      /* 16:9 aspect ratio => 9/16 = 56.25% */
+      padding-top: 56.25%;
+      background-color: white; /* White background behind the video */
     }
     .video-container video {
       position: absolute;
@@ -118,6 +119,8 @@
       max-width: 40%;
       text-align: right;
     }
+
+    /* Slider controls */
     .slider-controls {
       position: absolute;
       width: 100%;
@@ -260,36 +263,41 @@
   </div>
 </section>
 
-<!-- Comparison of 3D Reconstruction Section -->
+<!-- Comparison of 3D Reconstruction of Synthetic Medical Structures -->
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Comparison of 3D Reconstruction of Synthetic Medical Structures</h2>
     <div class="video-slider">
       <div class="video-container-wrapper">
+        <!-- Slide 1 -->
         <div class="video-container">
           <div class="video-title-overlay">Ground Truth</div>
           <video autoplay loop muted playsinline>
             <source src="./videos/alveolis_gt.mp4" type="video/mp4">
           </video>
         </div>
+        <!-- Slide 2 -->
         <div class="video-container">
-          <div class="video-title-overlay">CrossSDF(ours)</div>
+          <div class="video-title-overlay">CrossSDF (ours)</div>
           <video autoplay loop muted playsinline>
             <source src="./videos/alveolis_us.mp4" type="video/mp4">
           </video>
         </div>
+        <!-- Slide 3 -->
         <div class="video-container">
           <div class="video-title-overlay">OReX</div>
           <video autoplay loop muted playsinline>
             <source src="./videos/alveolis_orex.mp4" type="video/mp4">
           </video>
         </div>
+        <!-- Slide 4 -->
         <div class="video-container">
           <div class="video-title-overlay">Poisson</div>
           <video autoplay loop muted playsinline>
             <source src="./videos/alveolis_poisson.mp4" type="video/mp4">
           </video>
         </div>
+        <!-- Slide 5 -->
         <div class="video-container">
           <div class="video-title-overlay">POCO</div>
           <video autoplay loop muted playsinline>
@@ -331,7 +339,7 @@
   </div>
 </section>
 
-<!-- Adaptive Sampling Section -->
+<!-- Qualitative Results on Thin Medical Structures -->
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
