@@ -22,12 +22,14 @@
       object-fit: contain;
     }
 
-    /* Keep videos as they were before (no change) */
+    /* Set videos to have a reasonable max-width and height */
     video {
       margin: 2rem auto;
       display: block;
       width: 100%;
+      max-width: 800px;
       height: auto;
+      max-height: 500px;
       object-fit: contain;
     }
     /* Other existing styles */
@@ -71,12 +73,13 @@
       margin: 0 auto;
     }
 
-    /* Video slider styles - FIXED FOR ASPECT RATIO */
+    /* Video slider styles - FIXED FOR ASPECT RATIO AND SIZE */
     .video-slider {
       position: relative;
       width: 100%;
+      max-width: 800px;
       overflow: hidden;
-      margin: 2rem 0;
+      margin: 2rem auto;
     }
     .video-container-wrapper {
       display: flex;
@@ -158,8 +161,11 @@
     /* Fix for the training video section */
     .training-video {
       width: 100%;
+      max-width: 600px;
       height: auto;
+      max-height: 450px;
       object-fit: contain;
+      margin: 0 auto;
     }
   </style>
 </head>
