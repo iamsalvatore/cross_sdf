@@ -93,14 +93,13 @@
     .video-container {
       flex: 0 0 20%;
       position: relative;
-      /* Remove fixed aspect ratio */
     }
 
     .video-container video {
-      position: relative; /* Changed from absolute to allow natural sizing */
+      position: relative; 
       width: 100%;
-      height: auto; /* Allow height to adjust based on aspect ratio */
-      object-fit: contain; /* Ensure full video is visible without cropping */
+      height: auto; 
+      object-fit: contain; 
     }
 
     .video-title-overlay {
@@ -360,6 +359,25 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class="content has-text-justified">
           <p>Reconstruction results on thin structures featuring the Heart (top row) and Pulmonary (bottom row) for various methods. Results are presented using both input-aligned and non-aligned planes, displayed on the ground truth meshes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SDF Isolines Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h3 class="title is-4">SDF Isolines from 3D Reconstruction</h3>
+        <div>
+          <img src="./CrossSDF_Files/fig4_isolines.png" class="center" alt="SDF Isolines">
+        </div>
+        <div class="content has-text-justified">
+          <p>
+            This figure displays the SDF isolines derived from 3D reconstruction results. SDF isolines are curves that connect points with the same signed distance value from the object’s surface, essentially forming level sets. They provide a detailed map of the underlying geometry, highlighting subtle shape changes, curvature, and boundaries. This makes them an invaluable diagnostic tool for assessing reconstruction accuracy and revealing fine-scale structural features within complex shapes.
+          </p>
         </div>
       </div>
     </div>
