@@ -12,7 +12,7 @@
   <style>
     /* Keep the Bulma container wider if you need more room */
     .container.is-max-desktop {
-      max-width: 1440px; /* or whatever you prefer */
+      max-width: 1440px;
     }
 
     /* Only enlarge images up to 90% container width */
@@ -34,6 +34,7 @@
       max-height: 500px;
       object-fit: contain;
     }
+    
     /* Other existing styles */
     .publication-title {
       font-size: 2.5rem;
@@ -85,23 +86,21 @@
     }
     .video-container-wrapper {
       display: flex;
-      margin-bottom: 3rem; /* Adds space below the video */
-      overflow: hidden; /* Ensures the video doesn't overflow */
+      margin-bottom: 3rem;
+      overflow: hidden;
       transition: transform 0.3s ease;
-      width: 500%; /* 5 slides => 100% x 5 */
+      width: 500%;
     }
     .video-container {
       flex: 0 0 20%;
       position: relative;
     }
-
     .video-container video {
-      position: relative; 
+      position: relative;
       width: 100%;
-      height: auto; 
-      object-fit: contain; 
+      height: auto;
+      object-fit: contain;
     }
-
     .video-title-overlay {
       position: absolute;
       top: 1rem;
@@ -340,8 +339,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Only target the training videos
   const trainingVideos = document.querySelectorAll('.training-video');
-
-  // Set playback rate only for training videos
   trainingVideos.forEach(video => {
     video.playbackRate = 0.5;
   });
@@ -372,11 +369,13 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="column is-four-fifths">
         <h3 class="title is-4">SDF Isolines from 3D Reconstruction</h3>
         <div>
-          <img src="./CrossSDF_Files/fig4_isolines.png" class="center" alt="SDF Isolines" style="max-width: 80%;">
+          <!-- Reduced max-width to 60% and kept image centered -->
+          <img src="./CrossSDF_Files/fig4_isolines.png" class="center" alt="SDF Isolines" style="max-width: 60%;">
         </div>
-        <div class="content has-text-justified">
+        <div class="content has-text-centered">
           <p>
-            This figure displays the SDF isolines derived from 3D reconstruction results. 
+            This figure displays the SDF isolines derived from 3D reconstruction results. SDF isolines are curves that connect points with the same signed distance value from the object’s surface, essentially forming level sets. They provide a detailed map of the underlying geometry, highlighting subtle shape changes, curvature, and boundaries. This makes them an invaluable diagnostic tool for assessing reconstruction accuracy and revealing fine-scale structural features within complex shapes.
+          </p>
         </div>
       </div>
     </div>
@@ -400,7 +399,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const sliders = document.querySelectorAll('.video-slider');
-
   sliders.forEach(slider => {
     const wrapper = slider.querySelector('.video-container-wrapper');
     const prev = slider.querySelector('.prev');
@@ -448,22 +446,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Button click handlers with a small debounce
     let isTransitioning = false;
-
     prev.addEventListener('click', () => {
       if (isTransitioning) return;
       isTransitioning = true;
       goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
       setTimeout(() => { isTransitioning = false; }, 300);
     });
-
     next.addEventListener('click', () => {
       if (isTransitioning) return;
       isTransitioning = true;
       goToSlide((currentSlide + 1) % totalSlides);
       setTimeout(() => { isTransitioning = false; }, 300);
     });
-
-    // Initialize first slide
     updateSlider();
   });
 });
