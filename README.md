@@ -34,7 +34,7 @@ These meshes are sourced from the open-access dataset introduced in OReX ([Sawda
 
 To validate CrossSDF on real medical data, we include segmentation-derived meshes from two widely-used datasets:
 
-- **IRCADb-01**: Contains 20 contrast-enhanced abdominal CT scans with fully manual segmentations of liver vascular structures. Available at [ircad.fr](https://www.ircad.fr/research/3d-ircadb-01/).
+- **IRCADb-01**: Contains 20 contrast-enhanced abdominal CT scans with fully manual segmentations of liver vascular structures. Available at [ircad.fr](https://www.ircad.fr/research/data-sets/).
 - **Medical Segmentation Decathlon (MSD)**: Task 08 (Hepatic Vessels) includes 443 portal-phase CT scans with expert-annotated hepatic veins and arteries. Accessible at [medicaldecathlon.com](http://medicaldecathlon.com/).
 
 These datasets allow assessment of our method’s performance on noisy, low-resolution, and anatomically varied data derived from real-world imaging.
