@@ -4,13 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections</title>
+  <!-- Bulma CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
+  <!-- Font Awesome for icons (including GitHub icon) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   <style>
     /* Keep the Bulma container wider if you need more room */
     .container.is-max-desktop {
-      max-width: 1440px; /* or whatever you prefer */
+      max-width: 1440px;
     }
 
     /* Only enlarge images up to 90% container width */
@@ -22,17 +24,17 @@
       object-fit: contain;
     }
 
-    /* Keep videos as they were before (no change) */
+    /* Set videos to have a reasonable max-width and height */
     video {
       margin: 2rem auto;
       display: block;
-      min-width: 100%;
-      width: auto;
+      width: 100%;
+      max-width: 800px;
       height: auto;
-      max-height: 4000px;
+      max-height: 500px;
       object-fit: contain;
     }
-
+    
     /* Other existing styles */
     .publication-title {
       font-size: 2.5rem;
@@ -74,34 +76,31 @@
       margin: 0 auto;
     }
 
-    /* Video slider styles */
+    /* Video slider styles - FIXED FOR ASPECT RATIO AND SIZE */
     .video-slider {
       position: relative;
       width: 100%;
+      max-width: 800px;
       overflow: hidden;
-      margin: 2rem 0;
+      margin: 2rem auto;
     }
     .video-container-wrapper {
       display: flex;
+      margin-bottom: 3rem;
+      overflow: hidden;
       transition: transform 0.3s ease;
-      width: 500%; /* 5 slides => 100% x 5 */
+      width: 500%;
     }
     .video-container {
-            flex: 0 0 20%;
-            position: relative;
-            padding-top: 11.25%;
-        }
-        
-    .video-container video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
+      flex: 0 0 20%;
+      position: relative;
     }
-
-
+    .video-container video {
+      position: relative;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
     .video-title-overlay {
       position: absolute;
       top: 1rem;
@@ -158,6 +157,16 @@
     .dot.active {
       background: #363636;
     }
+    
+    /* Fix for the training video section */
+    .training-video {
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      max-height: 450px;
+      object-fit: contain;
+      margin: 0 auto;
+    }
   </style>
 </head>
 
@@ -172,7 +181,7 @@
           <h1 class="title is-1 publication-title">
             CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections
           </h1>
-          
+
           <div class="is-size-5 publication-authors">
             <span class="author-block">Thomas Walker<sup>*1</sup></span>
             <span class="author-block">Salvatore Esposito<sup>*1</sup></span>
@@ -187,18 +196,19 @@
             <span class="author-block"><sup>1</sup>University of Edinburgh</span>
             <span class="author-block"><sup>2</sup>University of British Columbia</span>
           </div>
-          
+
           <div class="is-size-5 publication-authors">
             <span class="author-block"><sup>*</sup>Equal Contribution</span>
           </div>
 
           <div class="is-size-5 publication-venue">
-            In arXiv
+            In Computer Vision and Pattern Recognition 2025
           </div>
           <div class="teaser-image">
             <img src="./CrossSDF_Files/teaser.jpg" alt="CrossSDF Teaser">
           </div>
 
+          <!-- Publication Links with new GitHub icon/link -->
           <div class="publication-links">
             <a href="https://www.arxiv.org/abs/2412.04120" class="button is-dark is-rounded">
               <span class="icon">
@@ -211,6 +221,13 @@
                 <i class="fas fa-file-alt"></i>
               </span>
               <span>arXiv</span>
+            </a>
+            <!-- New GitHub link -->
+            <a href="https://github.com/iamsalvatore/cross_sdf" class="button is-dark is-rounded">
+              <span class="icon">
+                <i class="fab fa-github"></i>
+              </span>
+              <span>GitHub</span>
             </a>
           </div>
         </div>
@@ -233,8 +250,6 @@
     </div>
   </div>
 </section>
-
-
 
 <!-- Method Overview Section -->
 <section class="section">
@@ -299,177 +314,23 @@
   </div>
 </section>
 
-<!-- Synthetic Shapes Section (Commented Out) -->
-<!--
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">3D Reconstruction of Synthetic Shapes</h2>
-    <div class="video-slider">
-      <div class="video-container-wrapper">
-        <div class="video-container">
-          <div class="video-title-overlay">Twisted Helix</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/synthetic_shape1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Mobius Strip</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/synthetic_shape2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Klein Bottle</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/synthetic_shape3.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Torus Knot</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/synthetic_shape4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Interlocked Rings</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/synthetic_shape5.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <div class="slider-controls">
-        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
-      </div>
-      <div class="slider-dots"></div>
-    </div>
-  </div>
-</section>
--->
-
-<!-- CT Scan Section (Commented Out) -->
-<!--
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">3D Reconstruction of Hepatic Blood Vessels from CT Scans</h2>
-    <div class="video-slider">
-      <div class="video-container-wrapper">
-        <div class="video-container">
-          <div class="video-title-overlay">Portal Vein Network</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/blood_vessel1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Hepatic Artery System</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/blood_vessel2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Biliary Tree Structure</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/blood_vessel3.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Venous Drainage</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/blood_vessel4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Complete Vasculature</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/blood_vessel5.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <div class="slider-controls">
-        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
-      </div>
-      <div class="slider-dots"></div>
-    </div>
-  </div>
-</section>
--->
-
-<!-- Visual Comparison Section (Commented Out) -->
-<!--
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Visual Comparison of 3D Reconstructions across Several Methods</h2>
-    <div class="video-slider">
-      <div class="video-container-wrapper">
-        <div class="video-container">
-          <div class="video-title-overlay">Traditional Method</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/comparison1.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Point Cloud Based</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/comparison2.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Neural Implicit</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/comparison3.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Mesh-Based</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/comparison4.mp4" type="video/mp4">
-          </video>
-        </div>
-        <div class="video-container">
-          <div class="video-title-overlay">CrossSDF (Ours)</div>
-          <video autoplay loop muted playsinline>
-            <source src="./videos/comparison5.mp4" type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <div class="slider-controls">
-        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
-      </div>
-      <div class="slider-dots"></div>
-    </div>
-  </div>
-</section>
--->
-
 <!-- Training Progress Section -->
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">CrossSDF Training Progress</h2>
-    <div class="video-slider" id="training-evolution-slider">
-      <div class="video-container-wrapper">
-        <div class="video-container">
-          <div class="video-title-overlay">Armadillo</div>
-          <video autoplay loop muted playsinline class="training-video" style="object-fit: contain;">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">CrossSDF Training Progress</h2>
+        <div>
+          <video autoplay loop muted playsinline class="training-video">
             <source src="./videos/armadillo.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="video-container">
-          <div class="video-title-overlay">Pulmonaries</div>
-          <video autoplay loop muted playsinline class="training-video" style="object-fit: contain;">
-            <source src="./videos/pulmonary.mp4" type="video/mp4">
-          </video>
+        <div class="content has-text-centered">
+          <p>
+            Visualization of CrossSDF's training on an example scene, showing convergence from sphere initialization to final reconstruction.
+          </p>
         </div>
       </div>
-      <div class="slider-controls">
-        <button class="slider-button prev"><i class="fas fa-chevron-left"></i></button>
-        <button class="slider-button next"><i class="fas fa-chevron-right"></i></button>
-      </div>
-      <div class="slider-dots"></div>
-    </div>
-    <div class="content has-text-justified">
-      <p>Visualization of CrossSDF's reconstruction process, showing convergence from initial predictions to final detailed models for both synthetic and medical structures.</p>
     </div>
   </div>
 </section>
@@ -477,9 +338,7 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   // Only target the training videos
-  const trainingVideos = document.querySelectorAll('#training-evolution-slider .training-video');
-  
-  // Set playback rate only for training videos
+  const trainingVideos = document.querySelectorAll('.training-video');
   trainingVideos.forEach(video => {
     video.playbackRate = 0.5;
   });
@@ -503,6 +362,26 @@ document.addEventListener('DOMContentLoaded', function() {
   </div>
 </section>
 
+<!-- SDF Isolines Section -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h3 class="title is-4">SDF Isolines from 3D Reconstruction</h3>
+        <div>
+          <!-- Reduced max-width to 60% and kept image centered -->
+          <img src="./CrossSDF_Files/fig4_isolines.png" class="center" alt="SDF Isolines" style="max-width: 60%;">
+        </div>
+        <div class="content has-text-centered">
+          <p>
+            This figure displays the SDF isolines derived from 3D reconstruction results. 
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- BibTeX Section -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
@@ -510,8 +389,8 @@ document.addEventListener('DOMContentLoaded', function() {
     <pre><code>@article{tomandsal2024_crosssdf,
     title={CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections},
     author={Walker, Thomas and Esposito, Salvatore and Rebain, Daniel and Vaxman, Amir and Onken, Arno and Li, Changjian and Mac Aodha, Oisin},
-    journal={arXiv preprint arXiv:2407.06938},
-    year={2024}
+    journal={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+    year={2025}
 }</code></pre>
   </div>
 </section>
@@ -520,16 +399,15 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const sliders = document.querySelectorAll('.video-slider');
-  
   sliders.forEach(slider => {
     const wrapper = slider.querySelector('.video-container-wrapper');
     const prev = slider.querySelector('.prev');
     const next = slider.querySelector('.next');
     const dotsContainer = slider.querySelector('.slider-dots');
-    
+
     let currentSlide = 0;
     const totalSlides = wrapper.children.length;
-    
+
     // Create dots
     for (let i = 0; i < totalSlides; i++) {
       const dot = document.createElement('div');
@@ -539,7 +417,7 @@ document.addEventListener('DOMContentLoaded', function() {
       dot.addEventListener('click', () => goToSlide(i));
       dotsContainer.appendChild(dot);
     }
-    
+
     function updateSlider() {
       wrapper.style.transform = `translate3d(-${currentSlide * 20}%, 0, 0)`;
       const dots = slider.querySelectorAll('.dot');
@@ -547,13 +425,13 @@ document.addEventListener('DOMContentLoaded', function() {
         dot.classList.toggle('active', index === currentSlide);
       });
     }
-    
+
     function goToSlide(index) {
       if (index < 0 || index >= totalSlides) return;
       currentSlide = index;
       updateSlider();
     }
-    
+
     // Add keyboard navigation
     slider.setAttribute('tabindex', '0');
     slider.addEventListener('keydown', (e) => {
@@ -565,25 +443,21 @@ document.addEventListener('DOMContentLoaded', function() {
         goToSlide((currentSlide + 1) % totalSlides);
       }
     });
-    
+
     // Button click handlers with a small debounce
     let isTransitioning = false;
-    
     prev.addEventListener('click', () => {
       if (isTransitioning) return;
       isTransitioning = true;
       goToSlide((currentSlide - 1 + totalSlides) % totalSlides);
       setTimeout(() => { isTransitioning = false; }, 300);
     });
-    
     next.addEventListener('click', () => {
       if (isTransitioning) return;
       isTransitioning = true;
       goToSlide((currentSlide + 1) % totalSlides);
       setTimeout(() => { isTransitioning = false; }, 300);
     });
-    
-    // Initialize first slide
     updateSlider();
   });
 });

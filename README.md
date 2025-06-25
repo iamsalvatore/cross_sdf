@@ -50,4 +50,3 @@ If you use the CrossSDF in your work, please cite the following [paper](https://
     booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
     year = {2025},
 }
-```
