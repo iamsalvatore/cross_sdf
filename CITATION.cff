@@ -1,0 +1,71 @@
+cff-version: 1.2.0
+message: "If you use this dataset, please cite it as below."
+type: dataset
+title: "CrossSDF Dataset: 3D Reconstruction of Thin Structures from Cross-Sections"
+authors:
+  - family-names: "Walker"
+    given-names: "Thomas"
+    email: "thomas.walker@ed.ac.uk"
+    affiliation: "University of Edinburgh"
+  - family-names: "Esposito"
+    given-names: "Salvatore"
+    email: "salvatore.esp95@gmail.com"
+    affiliation: "University of Edinburgh"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+  - family-names: "Rebain"
+    given-names: "Daniel"
+    affiliation: "University of Toronto"
+  - family-names: "Vaxman"
+    given-names: "Amir"
+    affiliation: "Utrecht University"
+  - family-names: "Onken"
+    given-names: "Arno"
+    affiliation: "University of Edinburgh"
+  - family-names: "Li"
+    given-names: "Changjian"
+    affiliation: "University of Edinburgh"
+  - family-names: "Mac Aodha"
+    given-names: "Oisin"
+    affiliation: "University of Edinburgh"
+url: "https://github.com/iamsalvatore/cross_sdf"
+repository-code: "https://github.com/iamsalvatore/cross_sdf"
+abstract: >-
+  This dataset contains 18 high-quality 3D meshes organized into thin and thick
+  structures for evaluating 3D reconstruction methods. The thin structures dataset
+  features 6 complex tubular and branching geometries from medical vasculature,
+  while the thick structures dataset includes 6 solid objects. All meshes are
+  provided in STL format, normalized to [-1, 1] coordinates, and are suitable
+  for benchmarking cross-sectional reconstruction algorithms.
+keywords:
+  - "3D reconstruction"
+  - "cross-sections"
+  - "thin structures"
+  - "STL meshes"
+  - "computer vision"
+  - "dataset"
+  - "benchmarking"
+license: "Custom (Non-commercial research use only)"
+version: "1.0.0"
+date-released: "2025-01-01"
+preferred-citation:
+  type: conference-paper
+  title: "CrossSDF: 3D Reconstruction of Thin Structures from Cross-Sections"
+  authors:
+    - family-names: "Walker"
+      given-names: "Thomas"
+    - family-names: "Esposito"
+      given-names: "Salvatore"
+    - family-names: "Rebain"
+      given-names: "Daniel"
+    - family-names: "Vaxman"
+      given-names: "Amir"
+    - family-names: "Onken"
+      given-names: "Arno"
+    - family-names: "Li"
+      given-names: "Changjian"
+    - family-names: "Mac Aodha"
+      given-names: "Oisin"
+  conference:
+    name: "IEEE/CVF Conference on Computer Vision and Pattern Recognition"
+  year: 2025
+  url: "https://www.arxiv.org/abs/2412.04120"
